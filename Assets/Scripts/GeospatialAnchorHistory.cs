@@ -18,8 +18,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace Google.XR.ARCoreExtensions.Samples.Geospatial
-{
+
     using System;
     using System.Collections.Generic;
     using UnityEngine;
@@ -159,4 +158,3 @@ namespace Google.XR.ARCoreExtensions.Samples.Geospatial
     }
 
     
-}

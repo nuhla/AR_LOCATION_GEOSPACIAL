@@ -333,8 +333,8 @@ struct Comparison_1_t7B58587F8689765E13B47F1C8964601B3309E441;
 struct Comparison_1_tBF0BE6729972AF8DF6C6E2274134C881021D8631;
 // System.Comparison`1<UnityEngine.UIElements.EasingFunction>
 struct Comparison_1_tE81C7BD20CD6590757BACBD4D55CBCD17BAA6D8B;
-// System.Comparison`1<Google.XR.ARCoreExtensions.Samples.Geospatial.GeospatialAnchorHistory>
-struct Comparison_1_t499A68E56FDAB225C9B492C918CBABD097C2D654;
+// System.Comparison`1<GeospatialAnchorHistory>
+struct Comparison_1_tC9FB455D38BBE916B276C3C8A0CA7105C92520B5;
 // System.Comparison`1<UnityEngine.TextCore.LowLevel.GlyphPairAdjustmentRecord>
 struct Comparison_1_tF964A5F2E76EBC830880EAA79F49245171578AA2;
 // System.Comparison`1<UnityEngine.TextCore.GlyphRect>
@@ -4847,28 +4847,28 @@ struct GCHandle_tC44F6F72EE68BD4CFABA24309DA7A179D41127DC
 	intptr_t ___handle_0;
 };
 
-// Google.XR.ARCoreExtensions.Samples.Geospatial.GeospatialAnchorHistory
-struct GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C 
+// GeospatialAnchorHistory
+struct GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45 
 {
-	// System.String Google.XR.ARCoreExtensions.Samples.Geospatial.GeospatialAnchorHistory::Title
+	// System.String GeospatialAnchorHistory::Title
 	String_t* ___Title_0;
-	// System.String Google.XR.ARCoreExtensions.Samples.Geospatial.GeospatialAnchorHistory::Description
+	// System.String GeospatialAnchorHistory::Description
 	String_t* ___Description_1;
-	// System.String Google.XR.ARCoreExtensions.Samples.Geospatial.GeospatialAnchorHistory::FullDiscription
+	// System.String GeospatialAnchorHistory::FullDiscription
 	String_t* ___FullDiscription_2;
-	// System.Double Google.XR.ARCoreExtensions.Samples.Geospatial.GeospatialAnchorHistory::Latitude
+	// System.Double GeospatialAnchorHistory::Latitude
 	double ___Latitude_3;
-	// System.Double Google.XR.ARCoreExtensions.Samples.Geospatial.GeospatialAnchorHistory::Longitude
+	// System.Double GeospatialAnchorHistory::Longitude
 	double ___Longitude_4;
-	// System.Double Google.XR.ARCoreExtensions.Samples.Geospatial.GeospatialAnchorHistory::Altitude
+	// System.Double GeospatialAnchorHistory::Altitude
 	double ___Altitude_5;
-	// System.Double Google.XR.ARCoreExtensions.Samples.Geospatial.GeospatialAnchorHistory::Heading
+	// System.Double GeospatialAnchorHistory::Heading
 	double ___Heading_6;
-	// UnityEngine.Quaternion Google.XR.ARCoreExtensions.Samples.Geospatial.GeospatialAnchorHistory::eunRotation
+	// UnityEngine.Quaternion GeospatialAnchorHistory::eunRotation
 	Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___eunRotation_7;
 };
-// Native definition for P/Invoke marshalling of Google.XR.ARCoreExtensions.Samples.Geospatial.GeospatialAnchorHistory
-struct GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C_marshaled_pinvoke
+// Native definition for P/Invoke marshalling of GeospatialAnchorHistory
+struct GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45_marshaled_pinvoke
 {
 	char* ___Title_0;
 	char* ___Description_1;
@@ -4879,8 +4879,8 @@ struct GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C_marshal
 	double ___Heading_6;
 	Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___eunRotation_7;
 };
-// Native definition for COM marshalling of Google.XR.ARCoreExtensions.Samples.Geospatial.GeospatialAnchorHistory
-struct GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C_marshaled_com
+// Native definition for COM marshalling of GeospatialAnchorHistory
+struct GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45_marshaled_com
 {
 	Il2CppChar* ___Title_0;
 	Il2CppChar* ___Description_1;
@@ -6193,8 +6193,8 @@ struct Comparison_1_tE81C7BD20CD6590757BACBD4D55CBCD17BAA6D8B  : public Multicas
 {
 };
 
-// System.Comparison`1<Google.XR.ARCoreExtensions.Samples.Geospatial.GeospatialAnchorHistory>
-struct Comparison_1_t499A68E56FDAB225C9B492C918CBABD097C2D654  : public MulticastDelegate_t
+// System.Comparison`1<GeospatialAnchorHistory>
+struct Comparison_1_tC9FB455D38BBE916B276C3C8A0CA7105C92520B5  : public MulticastDelegate_t
 {
 };
 
@@ -22425,39 +22425,39 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Comparison_1_Invoke_mB2279F3455203781
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-int32_t Comparison_1_Invoke_m2CACA06A233D0775A9D7F9CE2605DDE660DD381B_Multicast(Comparison_1_t499A68E56FDAB225C9B492C918CBABD097C2D654* __this, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C ___x0, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C ___y1, const RuntimeMethod* method)
+int32_t Comparison_1_Invoke_m9D3C224B4B9CF302E4FD3EC34E72A93A7AC07E22_Multicast(Comparison_1_tC9FB455D38BBE916B276C3C8A0CA7105C92520B5* __this, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45 ___x0, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45 ___y1, const RuntimeMethod* method)
 {
 	il2cpp_array_size_t length = __this->___delegates_13->max_length;
 	Delegate_t** delegatesToInvoke = reinterpret_cast<Delegate_t**>(__this->___delegates_13->GetAddressAtUnchecked(0));
 	int32_t retVal = 0;
 	for (il2cpp_array_size_t i = 0; i < length; i++)
 	{
-		Comparison_1_t499A68E56FDAB225C9B492C918CBABD097C2D654* currentDelegate = reinterpret_cast<Comparison_1_t499A68E56FDAB225C9B492C918CBABD097C2D654*>(delegatesToInvoke[i]);
-		typedef int32_t (*FunctionPointerType) (RuntimeObject*, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C, const RuntimeMethod*);
+		Comparison_1_tC9FB455D38BBE916B276C3C8A0CA7105C92520B5* currentDelegate = reinterpret_cast<Comparison_1_tC9FB455D38BBE916B276C3C8A0CA7105C92520B5*>(delegatesToInvoke[i]);
+		typedef int32_t (*FunctionPointerType) (RuntimeObject*, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45, const RuntimeMethod*);
 		retVal = ((FunctionPointerType)currentDelegate->___invoke_impl_1)((Il2CppObject*)currentDelegate->___method_code_6, ___x0, ___y1, reinterpret_cast<RuntimeMethod*>(currentDelegate->___method_3));
 	}
 	return retVal;
 }
-int32_t Comparison_1_Invoke_m2CACA06A233D0775A9D7F9CE2605DDE660DD381B_OpenInst(Comparison_1_t499A68E56FDAB225C9B492C918CBABD097C2D654* __this, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C ___x0, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C ___y1, const RuntimeMethod* method)
+int32_t Comparison_1_Invoke_m9D3C224B4B9CF302E4FD3EC34E72A93A7AC07E22_OpenInst(Comparison_1_tC9FB455D38BBE916B276C3C8A0CA7105C92520B5* __this, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45 ___x0, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45 ___y1, const RuntimeMethod* method)
 {
-	typedef int32_t (*FunctionPointerType) (GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C, const RuntimeMethod*);
+	typedef int32_t (*FunctionPointerType) (GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45, const RuntimeMethod*);
 	return ((FunctionPointerType)__this->___method_ptr_0)(___x0, ___y1, method);
 }
-int32_t Comparison_1_Invoke_m2CACA06A233D0775A9D7F9CE2605DDE660DD381B_OpenStatic(Comparison_1_t499A68E56FDAB225C9B492C918CBABD097C2D654* __this, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C ___x0, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C ___y1, const RuntimeMethod* method)
+int32_t Comparison_1_Invoke_m9D3C224B4B9CF302E4FD3EC34E72A93A7AC07E22_OpenStatic(Comparison_1_tC9FB455D38BBE916B276C3C8A0CA7105C92520B5* __this, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45 ___x0, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45 ___y1, const RuntimeMethod* method)
 {
-	typedef int32_t (*FunctionPointerType) (GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C, const RuntimeMethod*);
+	typedef int32_t (*FunctionPointerType) (GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45, const RuntimeMethod*);
 	return ((FunctionPointerType)__this->___method_ptr_0)(___x0, ___y1, method);
 }
-int32_t Comparison_1_Invoke_m2CACA06A233D0775A9D7F9CE2605DDE660DD381B_OpenStaticInvoker(Comparison_1_t499A68E56FDAB225C9B492C918CBABD097C2D654* __this, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C ___x0, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C ___y1, const RuntimeMethod* method)
+int32_t Comparison_1_Invoke_m9D3C224B4B9CF302E4FD3EC34E72A93A7AC07E22_OpenStaticInvoker(Comparison_1_tC9FB455D38BBE916B276C3C8A0CA7105C92520B5* __this, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45 ___x0, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45 ___y1, const RuntimeMethod* method)
 {
-	return InvokerFuncInvoker2< int32_t, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C >::Invoke(__this->___method_ptr_0, method, NULL, ___x0, ___y1);
+	return InvokerFuncInvoker2< int32_t, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45 >::Invoke(__this->___method_ptr_0, method, NULL, ___x0, ___y1);
 }
-int32_t Comparison_1_Invoke_m2CACA06A233D0775A9D7F9CE2605DDE660DD381B_ClosedStaticInvoker(Comparison_1_t499A68E56FDAB225C9B492C918CBABD097C2D654* __this, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C ___x0, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C ___y1, const RuntimeMethod* method)
+int32_t Comparison_1_Invoke_m9D3C224B4B9CF302E4FD3EC34E72A93A7AC07E22_ClosedStaticInvoker(Comparison_1_tC9FB455D38BBE916B276C3C8A0CA7105C92520B5* __this, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45 ___x0, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45 ___y1, const RuntimeMethod* method)
 {
-	return InvokerFuncInvoker3< int32_t, RuntimeObject*, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C >::Invoke(__this->___method_ptr_0, method, NULL, __this->___m_target_2, ___x0, ___y1);
+	return InvokerFuncInvoker3< int32_t, RuntimeObject*, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45 >::Invoke(__this->___method_ptr_0, method, NULL, __this->___m_target_2, ___x0, ___y1);
 }
-// System.Void System.Comparison`1<Google.XR.ARCoreExtensions.Samples.Geospatial.GeospatialAnchorHistory>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Comparison_1__ctor_m4F653C6CE2CE5AE4F2EBB6FF39AFD589ED84244F_gshared (Comparison_1_t499A68E56FDAB225C9B492C918CBABD097C2D654* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) 
+// System.Void System.Comparison`1<GeospatialAnchorHistory>::.ctor(System.Object,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Comparison_1__ctor_mC476E15891648BF4F5157F229ADB8E088D83C55B_gshared (Comparison_1_tC9FB455D38BBE916B276C3C8A0CA7105C92520B5* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) 
 {
 	__this->___method_ptr_0 = il2cpp_codegen_get_virtual_call_method_pointer((RuntimeMethod*)___method1);
 	__this->___method_3 = ___method1;
@@ -22470,12 +22470,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Comparison_1__ctor_m4F653C6CE2CE5AE4F2EB
 		bool isOpen = parameterCount == 2;
 		if (il2cpp_codegen_call_method_via_invoker((RuntimeMethod*)___method1))
 			if (isOpen)
-				__this->___invoke_impl_1 = (intptr_t)&Comparison_1_Invoke_m2CACA06A233D0775A9D7F9CE2605DDE660DD381B_OpenStaticInvoker;
+				__this->___invoke_impl_1 = (intptr_t)&Comparison_1_Invoke_m9D3C224B4B9CF302E4FD3EC34E72A93A7AC07E22_OpenStaticInvoker;
 			else
-				__this->___invoke_impl_1 = (intptr_t)&Comparison_1_Invoke_m2CACA06A233D0775A9D7F9CE2605DDE660DD381B_ClosedStaticInvoker;
+				__this->___invoke_impl_1 = (intptr_t)&Comparison_1_Invoke_m9D3C224B4B9CF302E4FD3EC34E72A93A7AC07E22_ClosedStaticInvoker;
 		else
 			if (isOpen)
-				__this->___invoke_impl_1 = (intptr_t)&Comparison_1_Invoke_m2CACA06A233D0775A9D7F9CE2605DDE660DD381B_OpenStatic;
+				__this->___invoke_impl_1 = (intptr_t)&Comparison_1_Invoke_m9D3C224B4B9CF302E4FD3EC34E72A93A7AC07E22_OpenStatic;
 			else
 				{
 					__this->___invoke_impl_1 = (intptr_t)__this->___method_ptr_0;
@@ -22489,12 +22489,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Comparison_1__ctor_m4F653C6CE2CE5AE4F2EB
 		__this->___invoke_impl_1 = (intptr_t)__this->___method_ptr_0;
 		__this->___method_code_6 = (intptr_t)__this->___m_target_2;
 	}
-	__this->___extra_arg_5 = (intptr_t)&Comparison_1_Invoke_m2CACA06A233D0775A9D7F9CE2605DDE660DD381B_Multicast;
+	__this->___extra_arg_5 = (intptr_t)&Comparison_1_Invoke_m9D3C224B4B9CF302E4FD3EC34E72A93A7AC07E22_Multicast;
 }
-// System.Int32 System.Comparison`1<Google.XR.ARCoreExtensions.Samples.Geospatial.GeospatialAnchorHistory>::Invoke(T,T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Comparison_1_Invoke_m2CACA06A233D0775A9D7F9CE2605DDE660DD381B_gshared (Comparison_1_t499A68E56FDAB225C9B492C918CBABD097C2D654* __this, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C ___x0, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C ___y1, const RuntimeMethod* method) 
+// System.Int32 System.Comparison`1<GeospatialAnchorHistory>::Invoke(T,T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Comparison_1_Invoke_m9D3C224B4B9CF302E4FD3EC34E72A93A7AC07E22_gshared (Comparison_1_tC9FB455D38BBE916B276C3C8A0CA7105C92520B5* __this, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45 ___x0, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45 ___y1, const RuntimeMethod* method) 
 {
-	typedef int32_t (*FunctionPointerType) (RuntimeObject*, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C, GeospatialAnchorHistory_t6908A396462F1450B5999D2948632194CD812A5C, const RuntimeMethod*);
+	typedef int32_t (*FunctionPointerType) (RuntimeObject*, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45, GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45, const RuntimeMethod*);
 	return ((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___x0, ___y1, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
 }
 #ifdef __clang__

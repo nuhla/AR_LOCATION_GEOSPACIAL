@@ -17,8 +17,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-namespace Google.XR.ARCoreExtensions.Samples.Geospatial
-{
+
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -30,10 +29,11 @@ namespace Google.XR.ARCoreExtensions.Samples.Geospatial
     using UnityEngine.XR.ARFoundation;
     using UnityEngine.XR.ARSubsystems;
     using Firebase.Database;
+using Google.XR.ARCoreExtensions;
 
 
 #if UNITY_ANDROID
-    using UnityEngine.Android;
+using UnityEngine.Android;
     using Newtonsoft.Json;
     using TMPro;
 #endif
@@ -956,4 +956,4 @@ namespace Google.XR.ARCoreExtensions.Samples.Geospatial
 
         }
     }
-}
+
