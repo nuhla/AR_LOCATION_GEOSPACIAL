@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_android_client_id,@string/default_web_client_id">
+  <string name="firebase_database_url" translatable="false">https://arpal-377917-default-rtdb.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">539299682712</string>
+  <string name="google_storage_bucket" translatable="false">arpal-377917.appspot.com</string>
+  <string name="project_id" translatable="false">arpal-377917</string>
+  <string name="google_api_key" translatable="false">AIzaSyBkGAz-CNWp25cHoYrKK6jWM8CL3POmkzo</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBkGAz-CNWp25cHoYrKK6jWM8CL3POmkzo</string>
+  <string name="google_app_id" translatable="false">1:539299682712:android:99c32298c4959f792433ed</string>
+  <string name="default_android_client_id" translatable="false">539299682712-ot4i3rh68k3hfbr8eb16m6a4ct83clmp.apps.googleusercontent.com</string>
+  <string name="default_web_client_id" translatable="false">539299682712-odeiooigqkku2f98p3219arp6e885ort.apps.googleusercontent.com</string>
+</resources>
