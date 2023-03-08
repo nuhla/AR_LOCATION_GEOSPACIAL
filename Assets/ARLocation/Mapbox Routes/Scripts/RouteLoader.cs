@@ -49,6 +49,7 @@ namespace ARLocation.MapboxRoutes
 
             // Resolve start location
             var resolver = new RouteWaypointResolveLocation(mapbox, start);
+
             yield return resolver.Resolve();
 
             if (resolver.IsError)

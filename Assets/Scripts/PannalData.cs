@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PannalData : MonoBehaviour
 {
-    public AnchoreData data;
+    public AnchoreData data = new AnchoreData();
     [SerializeField]
     private TMP_Text Title;
     [SerializeField]
@@ -15,12 +15,9 @@ public class PannalData : MonoBehaviour
     private void OnEnable()
     {
         Title.text = data.Title;
-        Discription.text = data.Description;
+        Discription.text = data.FullDiscription;
     }
 
     // Update is called once per frame
-    void Update()
-    {
 
-    }
 }

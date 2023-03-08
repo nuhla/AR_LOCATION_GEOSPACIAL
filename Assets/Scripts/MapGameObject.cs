@@ -98,7 +98,7 @@ public class MapGameObject : MonoBehaviour
     IEnumerator getMapbox()
     {
 
-        url = "https://api.mapbox.com/styles/v1/mapbox/light-v10/static/pin-s+ff0000(" + centerLongitud + "," + crentLatitud + ")/" + centerLongitud + "," + crentLatitud + ",14.81,0/300x200?before_layer=aeroway-line&access_token=" + accessToken;
+        url = "https://api.mapbox.com/styles/v1/mapbox/dark-v10/static/pin-s+ff0000(" + centerLongitud + "," + crentLatitud + ")/" + centerLongitud + "," + crentLatitud + ",17,0/300x200?before_layer=aeroway-line&access_token=" + accessToken;
 
         mapIsLoading = true;
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(url, false);
@@ -133,4 +133,6 @@ public class MapGameObject : MonoBehaviour
 
 
     }
+
+
 }

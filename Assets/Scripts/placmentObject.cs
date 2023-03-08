@@ -14,7 +14,7 @@ public class placmentObject : MonoBehaviour
     public AnchoreData data;
     private void Awake()
     {
-        Tag = Parent.gameObject.tag;
+
         data = Parent.gameObject.GetComponent<MarkerData>().marker;
     }
 }

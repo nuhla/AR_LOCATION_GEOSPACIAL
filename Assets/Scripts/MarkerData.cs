@@ -6,7 +6,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Firebase;
-using Firebase.Database;
 using System;
 using Newtonsoft.Json;
 
@@ -17,20 +16,21 @@ public class MarkerData : MonoBehaviour
     [SerializeField]
     public TMP_Text Discription;
     public AnchoreData Marker = new AnchoreData();
+    public string id;
     private Text DebugText;
-    public string name;
+
 
 
 
     // Start is called before the first frame update
     void Awake()
     {
-        Title.text = name;
+        Title.text = Marker.Title;
         Discription.text = Marker.Description;
     }
     private void Start()
     {
-        Title.text = name;
+        Title.text = Marker.Title;
         Discription.text = marker.Description;
     }
     public AnchoreData marker

@@ -13,11 +13,14 @@ TagManager:
   - DataViwer
   - Firebase
   - DebugText
+  - DiscriptionText
+  - MapboxRoute
+  - ErrorMessage
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - mapbox
   - Water
   - UI
   - 
@@ -49,4 +52,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: mapbox
+    uniqueID: 2956534323
     locked: 0
