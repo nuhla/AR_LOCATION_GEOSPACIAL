@@ -300,6 +300,7 @@ MonoBehaviour:
   geospacialPoints:
     Collection: []
   InfoText: {fileID: 782628376}
+  _DistanceToCreatAnchor: 30
   SnackBarText: {fileID: 1577749885}
 --- !u!114 &259715465 stripped
 MonoBehaviour:
@@ -602,6 +603,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 939988293544752911, guid: 83b0341c48b184e96aea5263a51b185d, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 963692770238760514, guid: 83b0341c48b184e96aea5263a51b185d, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -769,6 +774,10 @@ PrefabInstance:
     - target: {fileID: 2662587357236566024, guid: 83b0341c48b184e96aea5263a51b185d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 88
+      objectReference: {fileID: 0}
+    - target: {fileID: 2690073727356019106, guid: 83b0341c48b184e96aea5263a51b185d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2711379589407408776, guid: 83b0341c48b184e96aea5263a51b185d, type: 3}
       propertyPath: m_RootOrder
@@ -1714,8 +1723,9 @@ MonoBehaviour:
   route: {fileID: 1016346591}
   EarthManager: {fileID: 1114040585}
   _ErrorMessagePanel: {fileID: 782628379}
-  ErrorCanvue: {fileID: 782628378}
-  RoutingInfo: {fileID: 782628380}
+  _Distance: {fileID: 1853114849}
+  ErrorCanvas: {fileID: 782628378}
+  RoutingInfoCanvas: {fileID: 782628380}
 --- !u!4 &1805176774
 Transform:
   m_ObjectHideFlags: 0
@@ -1858,6 +1868,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2964252421568015284, guid: 10e64a1699ff523418906ae654243e40, type: 3}
   m_PrefabInstance: {fileID: 470224379}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1853114849 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7234426729225156562, guid: 83b0341c48b184e96aea5263a51b185d, type: 3}
+  m_PrefabInstance: {fileID: 782628375}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1969482742 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4187726655210328669, guid: 83b0341c48b184e96aea5263a51b185d, type: 3}

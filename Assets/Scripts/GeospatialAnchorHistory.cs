@@ -19,142 +19,144 @@
 //-----------------------------------------------------------------------
 
 
-    using System;
-    using System.Collections.Generic;
-    using UnityEngine;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+/// <summary>
+/// A serializable struct that stores the basic information of a persistent geospatial anchor.
+/// </summary>
+[Serializable]
+public struct GeospatialAnchorHistory
+{
+
 
     /// <summary>
-    /// A serializable struct that stores the basic information of a persistent geospatial anchor.
+    /// Latitude of the creation pose in degrees.
     /// </summary>
-    [Serializable]
-    public struct GeospatialAnchorHistory
+    // public String name;
+
+
+    /// <summary>
+    /// Latitude of the creation pose in degrees.
+    /// </summary>
+    //public String Title;
+
+    /// <summary>
+    /// Title of the creation pose in degrees.
+    /// </summary>
+    public String Title;
+
+    /// <summary>
+    /// Title of the creation pose in degrees.
+    /// </summary>
+    public String Description;
+
+    /// <summary>
+    /// Title of the creation pose in degrees.
+    /// </summary>
+    public String FullDiscription;
+
+    /// <summary>
+    /// Latitude of the creation pose in degrees.
+    /// </summary>
+    public double Latitude;
+
+    /// <summary>
+    /// Longitude of the creation pose in degrees.
+    /// </summary>
+    public double Longitude;
+
+    /// <summary>
+    /// Altitude of the creation pose in meters above the WGS84 ellipsoid.
+    /// </summary>
+    public double Altitude;
+
+    /// <summary>
+    /// Heading of the creation pose in degrees, used to calculate the original orientation.
+    /// </summary>
+    public double Heading;
+
+    /// <summary>
+    /// Rotation of the creation pose as a quaternion, used to calculate the original
+    /// orientation.
+    /// </summary>
+    public Quaternion eunRotation;
+    public bool Instaniated;
+
+    /// <summary>
+    /// Construct a Geospatial Anchor history.
+    /// </summary>
+    /// <param name="time">The time this Geospatial Anchor was created.</param>
+    /// <param name="latitude">
+    /// Latitude of the creation pose in degrees.</param>
+    /// <param name="longitude">
+    /// Longitude of the creation pose in degrees.</param>
+    /// <param name="altitude">
+    /// Altitude of the creation pose in meters above the WGS84 ellipsoid.</param>
+    /// <param name="eunRotation">
+    /// Rotation of the creation pose as a quaternion, used to calculate the original
+    /// orientation.
+    /// </param>
+    public GeospatialAnchorHistory(DateTime time, double Latitude, double Longitude,
+        double Altitude, Quaternion EunRotation, string Title = "",
+        string Description = "", string FullDiscription = "")
     {
 
+        this.Latitude = Latitude;
+        this.Longitude = Longitude;
+        this.Altitude = Altitude;
+        this.Heading = 0.0f;
+        this.eunRotation = EunRotation;
+        this.Title = Title;
+        this.FullDiscription = FullDiscription;
+        this.Description = Description;
+        this.Instaniated = true;
 
-        /// <summary>
-        /// Latitude of the creation pose in degrees.
-        /// </summary>
-       // public String name;
-
-
-        /// <summary>
-        /// Latitude of the creation pose in degrees.
-        /// </summary>
-        //public String Title;
-
-        /// <summary>
-        /// Title of the creation pose in degrees.
-        /// </summary>
-        public String Title;
-
-        /// <summary>
-        /// Title of the creation pose in degrees.
-        /// </summary>
-        public String Description;
-
-        /// <summary>
-        /// Title of the creation pose in degrees.
-        /// </summary>
-        public String FullDiscription;
-
-        /// <summary>
-        /// Latitude of the creation pose in degrees.
-        /// </summary>
-        public double Latitude;
-
-        /// <summary>
-        /// Longitude of the creation pose in degrees.
-        /// </summary>
-        public double Longitude;
-
-        /// <summary>
-        /// Altitude of the creation pose in meters above the WGS84 ellipsoid.
-        /// </summary>
-        public double Altitude;
-
-        /// <summary>
-        /// Heading of the creation pose in degrees, used to calculate the original orientation.
-        /// </summary>
-        public double Heading;
-
-        /// <summary>
-        /// Rotation of the creation pose as a quaternion, used to calculate the original
-        /// orientation.
-        /// </summary>
-        public Quaternion eunRotation;
-
-        /// <summary>
-        /// Construct a Geospatial Anchor history.
-        /// </summary>
-        /// <param name="time">The time this Geospatial Anchor was created.</param>
-        /// <param name="latitude">
-        /// Latitude of the creation pose in degrees.</param>
-        /// <param name="longitude">
-        /// Longitude of the creation pose in degrees.</param>
-        /// <param name="altitude">
-        /// Altitude of the creation pose in meters above the WGS84 ellipsoid.</param>
-        /// <param name="eunRotation">
-        /// Rotation of the creation pose as a quaternion, used to calculate the original
-        /// orientation.
-        /// </param>
-        public GeospatialAnchorHistory(DateTime time, double Latitude, double Longitude,
-            double Altitude, Quaternion EunRotation, string Title = "", 
-            string Description = "", string FullDiscription = "")
-        {
-
-            this.Latitude = Latitude;
-            this.Longitude = Longitude;
-            this.Altitude = Altitude;
-            this.Heading = 0.0f;
-            this.eunRotation = EunRotation;
-            this.Title = Title;
-            this.FullDiscription = FullDiscription;
-            this.Description = Description;
-
-        }
-
-        /// <summary>
-        /// Construct a Geospatial Anchor history.
-        /// </summary>
-        /// <param name="latitude">
-        /// Latitude of the creation pose in degrees.</param>
-        /// <param name="longitude">
-        /// Longitude of the creation pose in degrees.</param>
-        /// <param name="altitude">
-        /// Altitude of the creation pose in meters above the WGS84 ellipsoid.</param>
-        /// <param name="eunRotation">
-        /// Rotation of the creation pose as a quaternion, used to calculate the original
-        /// orientation.
-        /// </param>
-        public GeospatialAnchorHistory(
-            double latitude, double longitude, double altitude, Quaternion eunRotation) :
-            this(DateTime.Now, latitude, longitude, altitude, eunRotation)
-        {
-
-        }
-
-
-
-        /// <summary>
-        /// Overrides ToString() method.
-        /// </summary>
-        /// <returns>Return the json string of this object.</returns>
-        public override string ToString()
-        {
-            return JsonUtility.ToJson(this);
-        }
     }
 
     /// <summary>
-    /// A wrapper class for serializing a collection of <see cref="GeospatialAnchorHistory"/>.
+    /// Construct a Geospatial Anchor history.
     /// </summary>
-    [Serializable]
-    public class GeospatialAnchorHistoryCollection
+    /// <param name="latitude">
+    /// Latitude of the creation pose in degrees.</param>
+    /// <param name="longitude">
+    /// Longitude of the creation pose in degrees.</param>
+    /// <param name="altitude">
+    /// Altitude of the creation pose in meters above the WGS84 ellipsoid.</param>
+    /// <param name="eunRotation">
+    /// Rotation of the creation pose as a quaternion, used to calculate the original
+    /// orientation.
+    /// </param>
+    public GeospatialAnchorHistory(
+        double latitude, double longitude, double altitude, Quaternion eunRotation) :
+        this(DateTime.Now, latitude, longitude, altitude, eunRotation)
     {
-        /// <summary>
-        /// A list of Geospatial Anchor History Data.
-        /// </summary>
-        public List<GeospatialAnchorHistory> Collection = new List<GeospatialAnchorHistory>();
+        this.Instaniated = true;
     }
 
-    
+
+
+    /// <summary>
+    /// Overrides ToString() method.
+    /// </summary>
+    /// <returns>Return the json string of this object.</returns>
+    public override string ToString()
+    {
+        return JsonUtility.ToJson(this);
+    }
+}
+
+/// <summary>
+/// A wrapper class for serializing a collection of <see cref="GeospatialAnchorHistory"/>.
+/// </summary>
+[Serializable]
+public class GeospatialAnchorHistoryCollection
+{
+    /// <summary>
+    /// A list of Geospatial Anchor History Data.
+    /// </summary>
+    public List<GeospatialAnchorHistory> Collection = new List<GeospatialAnchorHistory>();
+}
+
+

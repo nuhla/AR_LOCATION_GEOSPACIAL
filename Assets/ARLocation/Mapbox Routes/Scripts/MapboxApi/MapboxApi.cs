@@ -97,7 +97,7 @@ namespace ARLocation.MapboxRoutes
             url += "&steps=true";
             url += $"&access_token={AccessToken}";
             url += $"&language={langCode}";
-
+            Debug.Log(url);
             return url;
         }
 

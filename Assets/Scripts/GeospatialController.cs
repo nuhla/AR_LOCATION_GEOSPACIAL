@@ -33,8 +33,7 @@ using Mapbox;
 using Google.XR.ARCoreExtensions;
 using UnityEngine.Android;
 using Newtonsoft.Json;
-
-
+using static Mercator;
 
 /// <summary>
 /// Controller for Geospatial sample.
@@ -109,6 +108,8 @@ public class GeospatialController : MonoBehaviour
     /// </summary>
 
     public Text InfoText;
+
+    public double _DistanceToCreatAnchor = 30;
 
     /// <summary>
     /// Text displaying in a snack bar at the bottom of the screen.
@@ -217,6 +218,7 @@ public class GeospatialController : MonoBehaviour
 
 
 
+
     /// <summary>
     /// Callback handling "Get Started" button click event in Privacy Prompt.
     /// </summary>
@@ -232,6 +234,22 @@ public class GeospatialController : MonoBehaviour
     }
 
 
+
+    private bool IsInRange(GeospatialAnchorHistory Point)
+    {
+
+        GeoCoordinate GeoPoint = new GeoCoordinate(Point.Latitude, Point.Longitude, Point.Latitude);
+        GeospatialPose myPostion = EarthManager.CameraGeospatialPose;
+        GeoCoordinate myPostionGeo = new GeoCoordinate(myPostion.Latitude, myPostion.Longitude, myPostion.Latitude);
+        double distance = myPostionGeo.GetDistanceTo(GeoPoint);
+        if (distance < _DistanceToCreatAnchor)
+        {
+            return true;
+        }
+
+
+        return false;
+    }
 
     /// <summary>
     /// Unity's Awake() method.
@@ -550,7 +568,9 @@ public class GeospatialController : MonoBehaviour
         }
 
 
-        if (_anchorObjects.Count == 0)
+        if (_anchorObjects.Count == 0 ||
+         (_anchorObjects.Count < geospacialPoints.Collection.Count
+          && geospacialPoints.Collection.Count != 0))
         {
 
             ResolveHistory();
@@ -705,11 +725,12 @@ public class GeospatialController : MonoBehaviour
 
         Quaternion eunRotation = Quaternion.AngleAxis((180f - (float)point.Heading), Vector3.up);
         Debug.Log(history.Title + " anchor is null");
+
         try
         {
             var anchor = terrain ?
                 AnchorManager.ResolveAnchorOnTerrain(
-                    history.Latitude, history.Longitude, 0, Quaternion.identity) :
+                    history.Latitude, history.Longitude, 1, Quaternion.identity) :
                 AnchorManager.AddAnchor(
                     history.Latitude, history.Longitude, history.Altitude, Quaternion.identity);
 
@@ -773,12 +794,15 @@ public class GeospatialController : MonoBehaviour
 
             return anchor;
         }
+
         catch (Exception ex)
         {
             Debug.Log("exxxxxxxxxxx" + ex);
 
 
         }
+
+
         return null;
     }
 
@@ -801,7 +825,21 @@ public class GeospatialController : MonoBehaviour
         {
             try
             {
-                PlaceGeospatialAnchor(history);
+                var isInsantiated = history.Instaniated == true;
+
+            }
+            catch
+            {
+                continue;
+            }
+            try
+            {
+                if (IsInRange(history))
+
+                {
+                    PlaceGeospatialAnchor(history);
+                }
+
             }
             catch (Exception ex)
             {

@@ -315,9 +315,13 @@ namespace ARLocation.MapboxRoutes
         {
             clearRoute();
 
+            Debug.Log(" -----------in Loader ------------" + result.ToString());
+
             if (result.routes.Count == 0)
             {
+                Debug.Log(" -----------result.routes.Count == 0 ------------");
                 return false;
+
             }
 
             // We only support one route
@@ -325,6 +329,7 @@ namespace ARLocation.MapboxRoutes
 
             if (route.legs.Count == 0)
             {
+                Debug.Log(" -----------route.legs.Count == 0 ------------");
                 return false;
             }
 
@@ -336,8 +341,9 @@ namespace ARLocation.MapboxRoutes
             int c = 0;
             foreach (var step in leg.steps)
             {
-                var loc = step.maneuver.location;
 
+                var loc = step.maneuver.location;
+                Debug.Log(" ----------- step.maneuver.location ------------" + step.maneuver.location);
                 // Create a PlaceAtLocation gameObject for this step
                 var go = new GameObject($"PlaceAt_{c}");
 
@@ -365,18 +371,24 @@ namespace ARLocation.MapboxRoutes
             s.RouteSteps = leg.steps;
             s.RouteDistance = leg.distance;
             s.RouteGeometry = route.geometry;
+            Debug.Log(" ----------- leg.steps; ------------" + leg.steps);
+            Debug.Log(" ----------- leg.distance ------------" + leg.distance);
+            Debug.Log(" ----------- route.geometry ------------" + route.geometry);
 
             // Set the first step as the current target
             SetTarget(0);
 
             if (Settings.PathRenderer != null)
             {
+                Debug.Log(" ----------- SetTarget ------------" + route.geometry);
                 Settings.PathRenderer.Init(createRoutePathRendererArgs());
             }
 
             if (Settings.OnScreenIndicator != null)
             {
+                Debug.Log(" ----------- OnScreenIndicator ------------");
                 Settings.OnScreenIndicator.Init(this);
+
             }
 
             return true;

@@ -36,9 +36,9 @@ public class RoutOrgnizer : MonoBehaviour
     public TMPro.TMP_Text _ErrorMessagePanel;
     public TMPro.TMP_Text _Distance;
 
-    public Canvas ErrorCanvue;
+    public Canvas ErrorCanvas;
 
-    public Canvas RoutingInfo;
+    public Canvas RoutingInfoCanvas;
 
     private RouteResponse currentResponse;
 
@@ -56,9 +56,32 @@ public class RoutOrgnizer : MonoBehaviour
         settings.RouteSettings.RouteType = RouteType.Mapbox;
         settings.RouteSettings.From = new RouteWaypoint { Type = RouteWaypointType.Location };
         settings.RouteSettings.To = new RouteWaypoint { Type = RouteWaypointType.Location };
+        try
+        {
+            settings.OnScreenIndicator = transform.Find("MapboxRoute").gameObject.GetComponent<DefaultOnScreenTargetIndicator>();
+            Debug.Log("----------------- DefaultOnScreenTargetIndicator Founded --------------");
+        }
+        catch
+        {
+            Debug.Log("----------------- Not Found --------------");
+        }
+        try
+        {
+            settings.PathRenderer = transform.Find("MapboxRoute").gameObject.GetComponent<PathRouteRenderer>();
+            Debug.Log("----------------- PathRouteRenderer Founded --------------");
+        }
+        catch
+        {
+            Debug.Log("----------------- PathRouteRenderer Not Founded --------------");
+        }
+
 
     }
 
+    private void Start()
+    {
+        StartRouting();
+    }
 
     public void StartRouting()
     {
@@ -67,9 +90,14 @@ public class RoutOrgnizer : MonoBehaviour
         /// </summary>
         if (route != null)
         {
+            /// <summary>
+            /// Debugging
+            /// </summary>
+            settings.RouteSettings.From.Location = new ARLocation.Location(40.826362, -73.940747, 73.940747);
+            settings.RouteSettings.To.Location = new ARLocation.Location(40.733843, -73.994288, 73.940747);
 
-            settings.RouteSettings.From.Location = new ARLocation.Location(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
-            settings.RouteSettings.To.Location = new ARLocation.Location(anchoreData.Latitude, anchoreData.Longitude, anchoreData.Altitude);
+            // settings.RouteSettings.From.Location = new ARLocation.Location(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
+            // settings.RouteSettings.To.Location = new ARLocation.Location(anchoreData.Latitude, anchoreData.Longitude, anchoreData.Altitude);
 
             route.Settings = settings;
             /// <summary>
@@ -89,26 +117,32 @@ public class RoutOrgnizer : MonoBehaviour
         var api = new MapboxApi(settings.MapboxToken);
         var loader = new RouteLoader(api);
         route.gameObject.SetActive(true);
-        StartCoroutine(loader.LoadRoute(route.Settings.RouteSettings.From, route.Settings.RouteSettings.To, (error, resp) =>
+        StartCoroutine(loader.LoadRoute(route.Settings.RouteSettings.From, route.Settings.RouteSettings.To, (error, response) =>
         {
             if (error != null)
             {
-                ErrorCanvue.gameObject.SetActive(true);
-                RoutingInfo.gameObject.SetActive(false);
+                ErrorCanvas.gameObject.SetActive(true);
+                RoutingInfoCanvas.gameObject.SetActive(false);
                 _ErrorMessagePanel.text = error;
 
                 return;
             }
-            RoutingInfo.gameObject.SetActive(true);
-            ErrorCanvue.gameObject.SetActive(false);
-            currentResponse = resp;
+            RoutingInfoCanvas.gameObject.SetActive(true);
+            ErrorCanvas.gameObject.SetActive(false);
+            currentResponse = response;
             var distance = 0f;
+            var NuberOfSteps = 0;
+
             for (var i = 0; i < currentResponse.routes.Count; i++)
             {
+                currentResponse.routes[i].
                 distance += currentResponse.routes[i].distance;
+
 
             }
             _Distance.text = distance.ToString();
+            Debug.Log("_Distance : " + _Distance + " , " + "NuberOfSteps : " + NuberOfSteps);
+            route.BuildRoute(currentResponse);
 
         }));
 
