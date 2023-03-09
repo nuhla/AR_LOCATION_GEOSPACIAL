@@ -1,79 +1,42 @@
 {
   "project_info": {
-    "project_number": "539299682712",
-    "firebase_url": "https://arpal-377917-default-rtdb.firebaseio.com",
-    "project_id": "arpal-377917",
-    "storage_bucket": "arpal-377917.appspot.com"
+    "project_number": "277860542920",
+    "firebase_url": "https://artelo-f7475-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "artelo-f7475",
+    "storage_bucket": "artelo-f7475.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:539299682712:android:99c32298c4959f792433ed",
+        "mobilesdk_app_id": "1:277860542920:android:3186627a3c8b1a520cf8fd",
         "android_client_info": {
-          "package_name": "com.PALAR.PAL_APP"
+          "package_name": "com.PALAR.Artelo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "539299682712-ot4i3rh68k3hfbr8eb16m6a4ct83clmp.apps.googleusercontent.com",
+          "client_id": "277860542920-maso2ms71job15vced7p9o82f55hvjm3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.PALAR.PAL_APP",
+            "package_name": "com.PALAR.Artelo",
             "certificate_hash": "4af1be665fc8c3918f8f919765c6348a8ef455a0"
           }
         },
         {
-          "client_id": "539299682712-odeiooigqkku2f98p3219arp6e885ort.apps.googleusercontent.com",
+          "client_id": "277860542920-ncsbp3c88aj7n11kt6v50n6l65ifclbv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBkGAz-CNWp25cHoYrKK6jWM8CL3POmkzo"
+          "current_key": "AIzaSyBTvLLETfBfCGotIX01rbWFdB-D5elJA-Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "539299682712-odeiooigqkku2f98p3219arp6e885ort.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:539299682712:android:c201814e513b536e2433ed",
-        "android_client_info": {
-          "package_name": "com.nerdsart.PALAR"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "539299682712-pqngr1it190o61s5dt4hk39p9uojft88.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.nerdsart.PALAR",
-            "certificate_hash": "4af1be665fc8c3918f8f919765c6348a8ef455a0"
-          }
-        },
-        {
-          "client_id": "539299682712-odeiooigqkku2f98p3219arp6e885ort.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBkGAz-CNWp25cHoYrKK6jWM8CL3POmkzo"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "539299682712-odeiooigqkku2f98p3219arp6e885ort.apps.googleusercontent.com",
+              "client_id": "277860542920-ncsbp3c88aj7n11kt6v50n6l65ifclbv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

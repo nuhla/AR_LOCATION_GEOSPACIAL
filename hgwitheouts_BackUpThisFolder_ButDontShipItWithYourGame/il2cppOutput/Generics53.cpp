@@ -7273,6 +7273,8 @@ struct GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45
 	double ___Heading_6;
 	// UnityEngine.Quaternion GeospatialAnchorHistory::eunRotation
 	Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___eunRotation_7;
+	// System.Boolean GeospatialAnchorHistory::Instaniated
+	bool ___Instaniated_8;
 };
 // Native definition for P/Invoke marshalling of GeospatialAnchorHistory
 struct GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45_marshaled_pinvoke
@@ -7285,6 +7287,7 @@ struct GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45_marshal
 	double ___Altitude_5;
 	double ___Heading_6;
 	Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___eunRotation_7;
+	int32_t ___Instaniated_8;
 };
 // Native definition for COM marshalling of GeospatialAnchorHistory
 struct GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45_marshaled_com
@@ -7297,6 +7300,7 @@ struct GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45_marshal
 	double ___Altitude_5;
 	double ___Heading_6;
 	Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___eunRotation_7;
+	int32_t ___Instaniated_8;
 };
 
 // UnityEngine.TextCore.LowLevel.GlyphAdjustmentRecord

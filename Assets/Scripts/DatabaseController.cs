@@ -45,11 +45,11 @@ public class DatabaseController : MonoBehaviour
     {
 
         Firebase.AppOptions options = new Firebase.AppOptions();
-        options.ApiKey = "AIzaSyBkGAz-CNWp25cHoYrKK6jWM8CL3POmkzo";
-        options.AppId = "539299682712";
-        options.MessageSenderId = "539299682712-odeiooigqkku2f98p3219arp6e885ort.apps.googleusercontent.com";
-        options.ProjectId = "arpal-377917";
-        options.StorageBucket = "arpal-377917.appspot.com";
+        options.ApiKey = "AIzaSyBTvLLETfBfCGotIX01rbWFdB-D5elJA-Y";
+        options.AppId = "277860542920";
+        options.MessageSenderId = "277860542920-maso2ms71job15vced7p9o82f55hvjm3.apps.googleusercontent.com";
+        options.ProjectId = "artelo-f7475";
+        options.StorageBucket = "artelo-f7475.appspot.com";
         // options.DatabaseUrl="https://arpal-377917-default-rtdb.firebaseio.com";
 
 
@@ -64,6 +64,8 @@ public class DatabaseController : MonoBehaviour
              // where app is a Firebase.FirebaseApp property of your application class.
              app = Firebase.FirebaseApp.DefaultInstance;
              firebaseAuth = FirebaseAuth.DefaultInstance;
+             // Get a reference to the storage service, using the default Firebase App
+             //FirebaseStorage storage = FirebaseStorage.DefaultInstance;
              isUserIsSignedIn();
 
              // Set a flag here to indicate whether Firebase is ready to use by your app.
@@ -109,7 +111,7 @@ public class DatabaseController : MonoBehaviour
         , Longitude, Altitude, Heading, Qua_x, Qua_Y, Qua_Z);
         string json = JsonUtility.ToJson(anchor);
 
-        databaseReference.Child("anchors").SetRawJsonValueAsync(json);
+
 
     }
 
@@ -135,7 +137,7 @@ public class DatabaseController : MonoBehaviour
           },
           verificationFailed: (error) =>
           {
-              debug.text = "verificationFailed  - " + error;
+              debug.text = "verification Failed  - " + error;
               VarifyCode.gameObject.SetActive(false);
               SignIn.enabled = false;
 
@@ -147,6 +149,7 @@ public class DatabaseController : MonoBehaviour
               VerificationId = id;
               VarifyCode.gameObject.SetActive(true);
               SignIn.gameObject.SetActive(false);
+
               //SignInWithCredential(id, Code);
               // Verification code was successfully sent via SMS.
               // `id` contains the verification id that will need to passed in with

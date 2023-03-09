@@ -34,6 +34,7 @@ using Google.XR.ARCoreExtensions;
 using UnityEngine.Android;
 using Newtonsoft.Json;
 using static Mercator;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Controller for Geospatial sample.
@@ -208,6 +209,7 @@ public class GeospatialController : MonoBehaviour
     public ShouldResolvingHistory _shouldResolvingHistory = new ShouldResolvingHistory();
     private bool _usingTerrainAnchor = true;
     private float _localizationPassedTime = 0f;
+    private string[] _InstantiatedAnchors = { };
     private float _configurePrepareTime = 3f;
     private static List<GameObject> _anchorObjects = new List<GameObject>();
     private IEnumerator _startLocationService = null;
@@ -239,8 +241,8 @@ public class GeospatialController : MonoBehaviour
     {
 
         GeoCoordinate GeoPoint = new GeoCoordinate(Point.Latitude, Point.Longitude, Point.Latitude);
-        GeospatialPose myPostion = EarthManager.CameraGeospatialPose;
-        GeoCoordinate myPostionGeo = new GeoCoordinate(myPostion.Latitude, myPostion.Longitude, myPostion.Latitude);
+        //GeospatialPose myPostion = EarthManager.CameraGeospatialPose;
+        GeoCoordinate myPostionGeo = new GeoCoordinate(31.896467, 35.175257, 815.03);
         double distance = myPostionGeo.GetDistanceTo(GeoPoint);
         if (distance < _DistanceToCreatAnchor)
         {
@@ -317,9 +319,12 @@ public class GeospatialController : MonoBehaviour
                                 JsonConvert.DeserializeObject<GeospatialAnchorHistory>(json);
                                 Debug.Log(historyanchor.Latitude + " ,\n " + historyanchor.Description +
                                 " , " + historyanchor.Heading + " ,\n " + historyanchor.Longitude + " ,\n " +
-                                historyanchor.FullDiscription + " ,\n " + historyanchor.Altitude + " ,\n " + historyanchor.Title);
-
-                                _historyCollection.Collection.Add(historyanchor);
+                                historyanchor.FullDiscription + " ,\n " + historyanchor.Altitude + " ,\n "
+                                + historyanchor.Title +
+                                 "\n Instaniated" + historyanchor.Instaniated
+                                 + "\n ManualHeight");
+                                historyanchor.Instaniated = false;
+                                geospacialPoints.Collection.Add(historyanchor);
 
                             }
                             catch (Exception ex)
@@ -329,7 +334,7 @@ public class GeospatialController : MonoBehaviour
                         }
 
                     }
-                    LoadGeospatialAnchorHistory();
+
                     _shouldResolvingHistory._shouldResolvingHistory = true;
 
                 }
@@ -386,19 +391,13 @@ public class GeospatialController : MonoBehaviour
         //SnackBarText.gameObject.SetActive(Debug.isDebugBuild && EarthManager != null);
         _localizationPassedTime = 0f;
         _isLocalizing = true;
-        LoadGeospatialAnchorHistory();
+
         SnackBarText.text = _localizingMessage;
         _shouldResolvingHistory._shouldResolvingHistory = geospacialPoints.Collection.Count > 0;
         SwitchToARView(true);
 
     }
-    private void LoadGeospatialAnchorHistory()
-    {
 
-        _historyCollection = geospacialPoints;
-
-
-    }
 
     private void SwitchToARView(bool enable)
     {
@@ -450,6 +449,9 @@ public class GeospatialController : MonoBehaviour
             yield break;
         }
 #endif
+#if UNITY_IOS
+        Application.RequestUserAuthorization(UserAuthorization.WebCam);
+#endif
 
         while (_waitingForLocationService)
         {
@@ -482,13 +484,31 @@ public class GeospatialController : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Go To Indoor Scene.
+    /// </summary>
+    private void GoToIndoorMood()
+    {
+
+
+        GeoCoordinate GeoPoint = new GeoCoordinate(47.431885611009406, 9.384837285619275, 661.5821774);
+        GeospatialPose myPostion = EarthManager.CameraGeospatialPose;
+        GeoCoordinate myPostionGeo = new GeoCoordinate(myPostion.Latitude, myPostion.Longitude, myPostion.Altitude);
+        double distance = myPostionGeo.GetDistanceTo(GeoPoint);
+        if (distance < 300)
+        {
+            SceneManager.LoadScene("Hol9");
+        }
+
+    }
 
     /// <summary>
     /// Unity's Update() method.
     /// </summary>
     public void Update()
     {
-
+        GoToIndoorMood();
+        ResolveHistory();
 
         if (!_isInARView)
         {
@@ -568,13 +588,15 @@ public class GeospatialController : MonoBehaviour
         }
 
 
+        Debug.Log("-----------brf geospacialPoints.Collection.Count ---------------" + geospacialPoints.Collection.Count);
         if (_anchorObjects.Count == 0 ||
-         (_anchorObjects.Count < geospacialPoints.Collection.Count
-          && geospacialPoints.Collection.Count != 0))
+          (_anchorObjects.Count <= geospacialPoints.Collection.Count
+           && geospacialPoints.Collection.Count != 0))
         {
 
-            ResolveHistory();
 
+
+            Debug.Log("------------ geospacialPoints.Collection.Count -------" + geospacialPoints.Collection.Count);
         }
         // Check earth localization.
         bool isSessionReady = ARSession.state == ARSessionState.SessionTracking &&
@@ -728,41 +750,49 @@ public class GeospatialController : MonoBehaviour
 
         try
         {
-            var anchor = terrain ?
+            //---------------------------------------------------//
+            //------------- get the Height from database --------//
+            //---------------------------------------------------//
+            var Height = history.Terrain ? history.TerainHeigt : history.Altitude;
+
+
+            Debug.Log(history.Terrain + "------------ history.Terrain ----------");
+            //----------------------------------------------------//
+            // Create Geospaciale Anchor and resolve Terain Anchore
+            //----------------------------------------------------//
+            var anchor = history.Terrain ?
                 AnchorManager.ResolveAnchorOnTerrain(
-                    history.Latitude, history.Longitude, 1, Quaternion.identity) :
+                    history.Latitude, history.Longitude, Height, Quaternion.identity) :
                 AnchorManager.AddAnchor(
                     history.Latitude, history.Longitude, history.Altitude, Quaternion.identity);
 
-            Debug.Log(anchor.ToString() + "anchor instanstiated");
-
-            Debug.Log(" History Values" + history.Latitude + " , " + history.Longitude + " , " + history.Altitude);
+            // ----------------- Debugging -------------------------//
+            Debug.Log(anchor.transform + "anchor instanstiated");
+            Debug.Log(" History Values" + history.Latitude + " , " + history.Longitude + " , " + Height);
 
             if (anchor != null)
             {
-
-
+                //------------------------------------------------//
+                // Instantiate GameObject and Put it in the Terrain
+                //------------------------------------------------//
                 GameObject anchorGO = terrain ?
                 Instantiate(TerrainPrefab, anchor.transform) :
                 Instantiate(GeospatialPrefab, anchor.transform);
-                //anchorGO.transform.tag = history.Title;
+                history.Instaniated = true;
+                _InstantiatedAnchors.Append(history.Title);
 
-                // Title.text += anchorGO.transform.GetComponent<MarkerData>().name = history.Title;
 
+                //----------------------------------------------//
+                // Evaluate GameObject MarkerDat with Correct Data
+                //----------------------------------------------//
                 anchorGO.transform.GetComponent<MarkerData>().Marker.Description = history.Description;
                 anchorGO.transform.GetComponent<MarkerData>().Marker.Title = history.Title;
                 anchorGO.transform.GetComponent<MarkerData>().Marker.Altitude = history.Altitude;
                 anchorGO.transform.GetComponent<MarkerData>().Marker.Latitude = history.Latitude;
                 anchorGO.transform.GetComponent<MarkerData>().Marker.Longitude = history.Longitude;
                 anchorGO.transform.GetComponent<MarkerData>().Marker.FullDiscription = history.FullDiscription;
-
                 anchorGO.transform.GetComponent<MarkerData>().Discription.text = history.FullDiscription;
                 anchorGO.transform.GetComponent<MarkerData>().Title.text = history.FullDiscription;
-
-
-
-
-
 
 
                 SnackBarText.text = "Anchore with position = " + "x : " + anchor.transform.position.x.ToString()
@@ -823,22 +853,16 @@ public class GeospatialController : MonoBehaviour
 
         foreach (var history in geospacialPoints.Collection)
         {
+
             try
             {
-                var isInsantiated = history.Instaniated == true;
-
-            }
-            catch
-            {
-                continue;
-            }
-            try
-            {
-                if (IsInRange(history))
-
+                if (IsInRange(history) && !Array.Exists(_InstantiatedAnchors, element => element == history.Title))
                 {
+                    Debug.Log("IsInRange(history) && !Array.Exists(_InstantiatedAnchors, element => element == history.Title)");
                     PlaceGeospatialAnchor(history);
+
                 }
+
 
             }
             catch (Exception ex)

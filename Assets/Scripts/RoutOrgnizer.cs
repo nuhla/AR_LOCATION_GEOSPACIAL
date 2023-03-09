@@ -64,6 +64,8 @@ public class RoutOrgnizer : MonoBehaviour
         catch
         {
             Debug.Log("----------------- Not Found --------------");
+            settings.OnScreenIndicator = new DefaultOnScreenTargetIndicator();
+
         }
         try
         {
@@ -72,16 +74,19 @@ public class RoutOrgnizer : MonoBehaviour
         }
         catch
         {
+            settings.PathRenderer = new PathRouteRenderer();
+
+
             Debug.Log("----------------- PathRouteRenderer Not Founded --------------");
         }
 
 
     }
 
-    private void Start()
-    {
-        StartRouting();
-    }
+    // private void Start()
+    // {
+    //     StartRouting();
+    // }
 
     public void StartRouting()
     {
@@ -93,11 +98,11 @@ public class RoutOrgnizer : MonoBehaviour
             /// <summary>
             /// Debugging
             /// </summary>
-            settings.RouteSettings.From.Location = new ARLocation.Location(40.826362, -73.940747, 73.940747);
-            settings.RouteSettings.To.Location = new ARLocation.Location(40.733843, -73.994288, 73.940747);
+            // settings.RouteSettings.From.Location = new ARLocation.Location(40.826362, -73.940747, 73.940747);
+            // settings.RouteSettings.To.Location = new ARLocation.Location(40.733843, -73.994288, 73.940747);
 
-            // settings.RouteSettings.From.Location = new ARLocation.Location(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
-            // settings.RouteSettings.To.Location = new ARLocation.Location(anchoreData.Latitude, anchoreData.Longitude, anchoreData.Altitude);
+            settings.RouteSettings.From.Location = new ARLocation.Location(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
+            settings.RouteSettings.To.Location = new ARLocation.Location(anchoreData.Latitude, anchoreData.Longitude, anchoreData.Altitude);
 
             route.Settings = settings;
             /// <summary>
@@ -142,6 +147,10 @@ public class RoutOrgnizer : MonoBehaviour
             }
             _Distance.text = distance.ToString();
             Debug.Log("_Distance : " + _Distance + " , " + "NuberOfSteps : " + NuberOfSteps);
+
+            /// <summary>
+            /// Built Rout.
+            /// </summary>
             route.BuildRoute(currentResponse);
 
         }));
