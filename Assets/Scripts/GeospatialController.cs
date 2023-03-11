@@ -513,12 +513,7 @@ public class GeospatialController : MonoBehaviour
         GoToIndoorMood();
         //SceneManager.LoadScene("OuterNavigation");
         Debug.Log(_anchorObjects.Count + "_anchorObjects.Count" + geospacialPoints.Collection.Count + "_InstantiatedAnchors.Count");
-        if (_anchorObjects.Count < geospacialPoints.Collection.Count)
-        {
-            ResolveHistory();
-
-            Debug.Log("------------ geospacialPoints.Collection.Count -------" + geospacialPoints.Collection.Count);
-        }
+     
 
         if (!_isInARView)
         {
@@ -605,12 +600,12 @@ public class GeospatialController : MonoBehaviour
         // {
 
 
-        // if (_anchorObjects.Count <  geospacialPoints.Collection.Count)
-        // {
-        //     ResolveHistory();
+        if (_anchorObjects.Count < geospacialPoints.Collection.Count)
+        {
+            ResolveHistory();
 
-        //     Debug.Log("------------ geospacialPoints.Collection.Count -------" + geospacialPoints.Collection.Count);
-        // }
+            Debug.Log("------------ geospacialPoints.Collection.Count -------" + geospacialPoints.Collection.Count);
+        }
         // Check earth localization.
         bool isSessionReady = ARSession.state == ARSessionState.SessionTracking &&
             Input.location.status == LocationServiceStatus.Running;
@@ -773,16 +768,10 @@ public class GeospatialController : MonoBehaviour
             //----------------------------------------------------//
             // Create Geospaciale Anchor and resolve Terain Anchore
             //----------------------------------------------------//
-            if (!IsInRange(history))
-            {
-                return null;
-            }
+            
 
             Debug.Log("----------------- history.Id ----------"+history.Id +"_InstantiatedAnchors.Contains(history.Id)"+_InstantiatedAnchors.Contains(history.Id));
-            if (_InstantiatedAnchors.Contains(history.Id))
-            {
-                return null;
-            }
+           
 
             //history.Terrain
             var anchor = history.Terrain ?
@@ -869,7 +858,7 @@ public class GeospatialController : MonoBehaviour
 
         if (!_shouldResolvingHistory._shouldResolvingHistory)
         {
-            InfoText.text += "_shouldResolvingHistory: " + _shouldResolvingHistory.ToString();
+            //InfoText.text += "_shouldResolvingHistory: " + _shouldResolvingHistory.ToString();
 
             Debug.Log(_shouldResolvingHistory._shouldResolvingHistory);
             return;
@@ -884,8 +873,16 @@ public class GeospatialController : MonoBehaviour
             try
             {
 
+                if (IsInRange(history)){
 
-                PlaceGeospatialAnchor(history);
+                    if (!_InstantiatedAnchors.Contains(history.Id))
+                    {
+                        PlaceGeospatialAnchor(history);
+                    }
+                    
+
+                }
+                
             }
             catch (Exception ex)
             {
