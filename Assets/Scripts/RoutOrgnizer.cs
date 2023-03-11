@@ -38,57 +38,12 @@ public class RoutOrgnizer : MonoBehaviour
 
     private void Awake()
     {
-        // / <summary>
-        // / Setting Up Main Router Settings .
-        // / </summary>
-        settings.Language = new MapboxApiLanguage();
-        settings.Language = MapboxApiLanguage.Arabic;
-        settings.MapboxToken = "pk.eyJ1IjoiYXJ0ZWxvIiwiYSI6ImNsZWtrY2g0dTBtOGQzcm5wNWd6ajd4OW0ifQ.kuIQLXklaS1BTG4DALtTWg";
-        settings.LoadRouteAtStartup = true;
-        settings.RouteSettings = new RouteSettings();
-        settings.RouteSettings.RouteType = RouteType.Mapbox;
-        settings.RouteSettings.From = new RouteWaypoint { Type = RouteWaypointType.UserLocation };
-        settings.RouteSettings.To = new RouteWaypoint { Type = RouteWaypointType.Location };
-
-        try
-        {
-            settings.OnScreenIndicator = transform.Find("MapboxRoute").gameObject.GetComponent<DefaultOnScreenTargetIndicator>();
-            Debug.Log("----------------- DefaultOnScreenTargetIndicator Founded --------------");
-        }
-        catch
-        {
-            Debug.Log("----------------- Not Found --------------");
-            settings.OnScreenIndicator = new DefaultOnScreenTargetIndicator();
-
-        }
-        try
-        {
-            settings.PathRenderer = transform.Find("MapboxRoute").gameObject.GetComponent<PathRouteRenderer>();
-            Debug.Log("----------------- PathRouteRenderer Founded --------------");
-        }
-        catch
-        {
-            settings.PathRenderer = new PathRouteRenderer();
-
-
-            Debug.Log("----------------- PathRouteRenderer Not Founded --------------");
-        }
 
 
     }
 
     private void Start()
     {
-        StartRouting();
-    }
-
-    public void StartRouting()
-    {
-        /// <summary>
-        /// Setting Up Main To and from Depending On AnchoreData Position.
-        /// </summary>
-
-
         if (route != null)
         {
             /// <summary>
@@ -101,21 +56,19 @@ public class RoutOrgnizer : MonoBehaviour
             var alt = double.Parse(PlayerPrefs.GetString("altitud"));
 
             Debug.Log(lat + "," + lang + "," + alt);
-            //settings.RouteSettings.From.Location = new ARLocation.Location(31.8968933882709, 35.17448570997088, 789.2380951624432);
-            // settings.RouteSettings.From.Location.AltitudeMode = AltitudeMode.GroundRelative;
+
+            settings.RouteSettings = new RouteSettings();
+            settings.RouteSettings.To = new RouteWaypoint { Type = RouteWaypointType.Location };
+
             settings.RouteSettings.To.Location = new ARLocation.Location(lat, lang, alt);
             settings.RouteSettings.To.Location.AltitudeMode = AltitudeMode.GroundRelative;
-            route.Settings = settings;
-            /// <summary>
-            /// Debugging .
-            /// </summary>
+
+            route.Settings.RouteSettings.To = settings.RouteSettings.To;
+
             route.gameObject.SetActive(true);
         }
-
-
-
-
     }
+
 
 
 

@@ -838,7 +838,7 @@ MonoBehaviour:
     - {fileID: 2406714923471210871, guid: 154e5264001534d7999c9720b114562d, type: 3}
     PathRenderer: {fileID: 710506128}
     OnScreenIndicator: {fileID: 710506127}
-    MapboxToken: 
+    MapboxToken: pk.eyJ1IjoiYXJ0ZWxvIiwiYSI6ImNsZWtrY2g0dTBtOGQzcm5wNWd6ajd4OW0ifQ.kuIQLXklaS1BTG4DALtTWg
     Language: 12
     RouteSettings:
       RouteType: 0

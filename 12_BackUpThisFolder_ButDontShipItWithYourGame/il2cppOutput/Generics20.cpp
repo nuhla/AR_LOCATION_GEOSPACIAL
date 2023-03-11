@@ -17081,60 +17081,64 @@ struct GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45
 {
 	// System.String GeospatialAnchorHistory::Title
 	String_t* ___Title_0;
+	// System.String GeospatialAnchorHistory::Id
+	String_t* ___Id_1;
 	// System.String GeospatialAnchorHistory::Description
-	String_t* ___Description_1;
+	String_t* ___Description_2;
 	// System.String GeospatialAnchorHistory::FullDiscription
-	String_t* ___FullDiscription_2;
+	String_t* ___FullDiscription_3;
 	// System.Double GeospatialAnchorHistory::Latitude
-	double ___Latitude_3;
+	double ___Latitude_4;
 	// System.Double GeospatialAnchorHistory::Longitude
-	double ___Longitude_4;
+	double ___Longitude_5;
 	// System.Double GeospatialAnchorHistory::Altitude
-	double ___Altitude_5;
+	double ___Altitude_6;
 	// System.Double GeospatialAnchorHistory::Heading
-	double ___Heading_6;
+	double ___Heading_7;
 	// UnityEngine.Quaternion GeospatialAnchorHistory::eunRotation
-	Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___eunRotation_7;
+	Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___eunRotation_8;
 	// System.Boolean GeospatialAnchorHistory::Instaniated
-	bool ___Instaniated_8;
+	bool ___Instaniated_9;
 	// System.Boolean GeospatialAnchorHistory::IsLeftToPoint
-	bool ___IsLeftToPoint_9;
+	bool ___IsLeftToPoint_10;
 	// System.Boolean GeospatialAnchorHistory::Terrain
-	bool ___Terrain_10;
+	bool ___Terrain_11;
 	// System.Double GeospatialAnchorHistory::TerainHeigt
-	double ___TerainHeigt_11;
+	double ___TerainHeigt_12;
 };
 // Native definition for P/Invoke marshalling of GeospatialAnchorHistory
 struct GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45_marshaled_pinvoke
 {
 	char* ___Title_0;
-	char* ___Description_1;
-	char* ___FullDiscription_2;
-	double ___Latitude_3;
-	double ___Longitude_4;
-	double ___Altitude_5;
-	double ___Heading_6;
-	Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___eunRotation_7;
-	int32_t ___Instaniated_8;
-	int32_t ___IsLeftToPoint_9;
-	int32_t ___Terrain_10;
-	double ___TerainHeigt_11;
+	char* ___Id_1;
+	char* ___Description_2;
+	char* ___FullDiscription_3;
+	double ___Latitude_4;
+	double ___Longitude_5;
+	double ___Altitude_6;
+	double ___Heading_7;
+	Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___eunRotation_8;
+	int32_t ___Instaniated_9;
+	int32_t ___IsLeftToPoint_10;
+	int32_t ___Terrain_11;
+	double ___TerainHeigt_12;
 };
 // Native definition for COM marshalling of GeospatialAnchorHistory
 struct GeospatialAnchorHistory_t273616F45A64F833BA40BB755E5451767B622F45_marshaled_com
 {
 	Il2CppChar* ___Title_0;
-	Il2CppChar* ___Description_1;
-	Il2CppChar* ___FullDiscription_2;
-	double ___Latitude_3;
-	double ___Longitude_4;
-	double ___Altitude_5;
-	double ___Heading_6;
-	Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___eunRotation_7;
-	int32_t ___Instaniated_8;
-	int32_t ___IsLeftToPoint_9;
-	int32_t ___Terrain_10;
-	double ___TerainHeigt_11;
+	Il2CppChar* ___Id_1;
+	Il2CppChar* ___Description_2;
+	Il2CppChar* ___FullDiscription_3;
+	double ___Latitude_4;
+	double ___Longitude_5;
+	double ___Altitude_6;
+	double ___Heading_7;
+	Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___eunRotation_8;
+	int32_t ___Instaniated_9;
+	int32_t ___IsLeftToPoint_10;
+	int32_t ___Terrain_11;
+	double ___TerainHeigt_12;
 };
 
 // System.Dynamic.GetIndexBinder
