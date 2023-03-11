@@ -50,6 +50,10 @@ public struct GeospatialAnchorHistory
     /// <summary>
     /// Title of the creation pose in degrees.
     /// </summary>
+    public String Id;
+    /// <summary>
+    /// Title of the creation pose in degrees.
+    /// </summary>
     public String Description;
 
     /// <summary>
@@ -103,13 +107,13 @@ public struct GeospatialAnchorHistory
     /// Rotation of the creation pose as a quaternion, used to calculate the original
     /// orientation.
     /// </param>
-    public GeospatialAnchorHistory(DateTime time, double Latitude, double Longitude,
+    public GeospatialAnchorHistory(DateTime time, string Id, double Latitude, double Longitude,
         double Altitude, Quaternion EunRotation, string Title = "",
         string Description = "", string FullDiscription = "",
         double TerainHeigt = 0.0f, bool Terrain = true, bool ManualHeight = false,
          bool IsLeftToPoint = false)
     {
-
+        this.Id = Id;
         this.Latitude = Latitude;
         this.Longitude = Longitude;
         this.Altitude = Altitude;
@@ -119,7 +123,7 @@ public struct GeospatialAnchorHistory
         this.FullDiscription = FullDiscription;
         this.Description = Description;
         this.Instaniated = true;
-        
+
         this.IsLeftToPoint = IsLeftToPoint;
         this.Terrain = true;
         this.TerainHeigt = TerainHeigt;
@@ -140,14 +144,14 @@ public struct GeospatialAnchorHistory
     /// Rotation of the creation pose as a quaternion, used to calculate the original
     /// orientation.
     /// </param>
-    public GeospatialAnchorHistory(
-        double latitude, double longitude, double altitude, Quaternion eunRotation) :
-        this(DateTime.Now, latitude, longitude, altitude, eunRotation)
-    {
-        this.Instaniated = true;
-        this.IsLeftToPoint = false;
-        this.Terrain = true;
-    }
+    // public GeospatialAnchorHistory(
+    //     double latitude, double longitude, double altitude, Quaternion eunRotation) :
+    //     this(DateTime.Now, latitude, longitude, altitude, eunRotation)
+    // {
+    //     this.Instaniated = true;
+    //     this.IsLeftToPoint = false;
+    //     this.Terrain = true;
+    // }
 
 
 

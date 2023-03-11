@@ -209,7 +209,7 @@ public class GeospatialController : MonoBehaviour
     public ShouldResolvingHistory _shouldResolvingHistory = new ShouldResolvingHistory();
     private bool _usingTerrainAnchor = true;
     private float _localizationPassedTime = 0f;
-    private string[] _InstantiatedAnchors = { };
+    private static List<String> _InstantiatedAnchors = new List<string>();
     private float _configurePrepareTime = 3f;
     private static List<GameObject> _anchorObjects = new List<GameObject>();
     private IEnumerator _startLocationService = null;
@@ -306,7 +306,7 @@ public class GeospatialController : MonoBehaviour
 
                         while (sequenceEnum.MoveNext())
                         {
-
+                            var id = sequenceEnum.Current.Key;
                             try
                             {
 
@@ -317,13 +317,16 @@ public class GeospatialController : MonoBehaviour
 
                                 GeospatialAnchorHistory historyanchor =
                                 JsonConvert.DeserializeObject<GeospatialAnchorHistory>(json);
-                                Debug.Log(historyanchor.Latitude + " ,\n " + historyanchor.Description +
+                                historyanchor.Instaniated = false;
+                                historyanchor.Id = id;
+
+                                Debug.Log("Id =" + historyanchor.Id + "\n" + historyanchor.Latitude + " ,\n " + historyanchor.Description +
                                 " , " + historyanchor.Heading + " ,\n " + historyanchor.Longitude + " ,\n " +
                                 historyanchor.FullDiscription + " ,\n " + historyanchor.Altitude + " ,\n "
                                 + historyanchor.Title +
                                  "\n Instaniated" + historyanchor.Instaniated
                                  + "\n ManualHeight");
-                                historyanchor.Instaniated = false;
+
                                 geospacialPoints.Collection.Add(historyanchor);
 
                             }
@@ -509,7 +512,13 @@ public class GeospatialController : MonoBehaviour
     {
         GoToIndoorMood();
         //SceneManager.LoadScene("OuterNavigation");
-        
+        Debug.Log(_anchorObjects.Count + "_anchorObjects.Count" + geospacialPoints.Collection.Count + "_InstantiatedAnchors.Count");
+        if (_anchorObjects.Count < geospacialPoints.Collection.Count)
+        {
+            ResolveHistory();
+
+            Debug.Log("------------ geospacialPoints.Collection.Count -------" + geospacialPoints.Collection.Count);
+        }
 
         if (!_isInARView)
         {
@@ -594,11 +603,14 @@ public class GeospatialController : MonoBehaviour
         //   (_anchorObjects.Count <= geospacialPoints.Collection.Count
         //    && geospacialPoints.Collection.Count != 0))
         // {
-        if (_anchorObjects.Count == 0){
-            ResolveHistory();
 
-            Debug.Log("------------ geospacialPoints.Collection.Count -------" + geospacialPoints.Collection.Count);
-        }
+
+        // if (_anchorObjects.Count <  geospacialPoints.Collection.Count)
+        // {
+        //     ResolveHistory();
+
+        //     Debug.Log("------------ geospacialPoints.Collection.Count -------" + geospacialPoints.Collection.Count);
+        // }
         // Check earth localization.
         bool isSessionReady = ARSession.state == ARSessionState.SessionTracking &&
             Input.location.status == LocationServiceStatus.Running;
@@ -746,7 +758,7 @@ public class GeospatialController : MonoBehaviour
 
         // Quaternion eunRotation = history.heading == 0f ? point.EunRotation : history.eunRotation;
 
-        
+
         Debug.Log(history.Title + " anchor is null");
 
         try
@@ -761,6 +773,16 @@ public class GeospatialController : MonoBehaviour
             //----------------------------------------------------//
             // Create Geospaciale Anchor and resolve Terain Anchore
             //----------------------------------------------------//
+            if (!IsInRange(history))
+            {
+                return null;
+            }
+
+            Debug.Log("----------------- history.Id ----------"+history.Id +"_InstantiatedAnchors.Contains(history.Id)"+_InstantiatedAnchors.Contains(history.Id));
+            if (_InstantiatedAnchors.Contains(history.Id))
+            {
+                return null;
+            }
 
             //history.Terrain
             var anchor = history.Terrain ?
@@ -782,7 +804,7 @@ public class GeospatialController : MonoBehaviour
                 Instantiate(TerrainPrefab, anchor.transform) :
                 Instantiate(GeospatialPrefab, anchor.transform);
                 history.Instaniated = true;
-                _InstantiatedAnchors.Append(history.Title);
+
 
 
                 //----------------------------------------------//
@@ -807,6 +829,8 @@ public class GeospatialController : MonoBehaviour
                 }
 
                 _anchorObjects.Add(anchor.gameObject);
+
+                _InstantiatedAnchors.Add(history.Id);
                 Debug.Log("in _anchorObjects add");
 
                 if (terrain)
@@ -859,12 +883,7 @@ public class GeospatialController : MonoBehaviour
 
             try
             {
-                if (IsInRange(history) && !Array.Exists(_InstantiatedAnchors, element => element == history.Title))
-                {
-                    Debug.Log("IsInRange(history) && !Array.Exists(_InstantiatedAnchors, element => element == history.Title)");
-                   
 
-                }
 
                 PlaceGeospatialAnchor(history);
             }
