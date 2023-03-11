@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
-
+using TMPro;
 
 namespace ARLocation.MapboxRoutes
 {
@@ -11,6 +11,10 @@ namespace ARLocation.MapboxRoutes
         // ================================================================================ //
         //  Public Classes                                                                  //
         // ================================================================================ //
+
+        public TMP_Text ErrorText;
+        public TMP_Text DiatanceText;
+        public TMP_Text NearTo;
 
         [Serializable]
         public class MapboxRouteLoadErrorEvent : UnityEvent<string> { }
@@ -115,7 +119,7 @@ namespace ARLocation.MapboxRoutes
         // ================================================================================ //
 
         [Serializable]
-        class State
+       public class State
         {
             public string LoadRouteError = null;
             public List<List<AbstractRouteSignpost>> SignPostInstances = new List<List<AbstractRouteSignpost>>();
@@ -131,7 +135,7 @@ namespace ARLocation.MapboxRoutes
         // ================================================================================ //
 
         private MapboxApi mapbox;
-        private State s = new State();
+        public State s = new State();
 
         // ================================================================================ //
         //  Monobehaviour methods                                                           //
@@ -239,7 +243,8 @@ namespace ARLocation.MapboxRoutes
                     }
                     else
                     {
-                        Utils.Logger.ErrorFromMethod("MapboxRoute", "onLocationEnabled", "RouteType is 'Custom Route' but 'CustomRoute' is null; please set the 'Custom Route' property on the inspector panel.");
+                        ErrorText.text ="MapboxRoute onLocationEnabled RouteType is 'Custom Route' but 'CustomRoute' is null; please set the 'Custom Route' property on the inspector panel.";
+                       Utils.Logger.ErrorFromMethod("MapboxRoute", "onLocationEnabled", "RouteType is 'Custom Route' but 'CustomRoute' is null; please set the 'Custom Route' property on the inspector panel.");
                         return;
                     }
                 }
@@ -315,7 +320,7 @@ namespace ARLocation.MapboxRoutes
         {
             clearRoute();
 
-            Debug.Log(" -----------in Loader ------------" + result.ToString());
+//            Debug.Log(" -----------in Loader ------------" + result.ToString());
 
             if (result.routes.Count == 0)
             {
@@ -371,6 +376,8 @@ namespace ARLocation.MapboxRoutes
             s.RouteSteps = leg.steps;
             s.RouteDistance = leg.distance;
             s.RouteGeometry = route.geometry;
+           
+            DiatanceText.text= leg.distance.ToString();
             Debug.Log(" ----------- leg.steps; ------------" + leg.steps);
             Debug.Log(" ----------- leg.distance ------------" + leg.distance);
             Debug.Log(" ----------- route.geometry ------------" + route.geometry);
@@ -554,7 +561,7 @@ namespace ARLocation.MapboxRoutes
         public System.Collections.IEnumerator LoadRoute(RouteWaypoint start, RouteWaypoint end, Action<string> callback)
         {
             yield return LoadRoute(start, end);
-
+            ErrorText.text =s.LoadRouteError;
             callback(s.LoadRouteError);
         }
 
@@ -572,6 +579,8 @@ namespace ARLocation.MapboxRoutes
             if (loader.Error != null)
             {
                 s.LoadRouteError = loader.Error;
+                ErrorText.text = loader.Error;
+                Debug.Log("============ ftom loader ");
                 Settings.OnMapboxRouteLoadError?.Invoke(loader.Error);
             }
             else

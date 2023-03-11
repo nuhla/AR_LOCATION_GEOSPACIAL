@@ -40,6 +40,7 @@ namespace ARLocation.MapboxRoutes
         public static RouteResponse Parse(string json)
         {
             return Parse(JSON.Parse(json));
+            
         }
 
         public static RouteResponse Parse(JSONNode node)

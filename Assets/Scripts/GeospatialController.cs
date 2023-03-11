@@ -508,7 +508,8 @@ public class GeospatialController : MonoBehaviour
     public void Update()
     {
         GoToIndoorMood();
-        ResolveHistory();
+        //SceneManager.LoadScene("OuterNavigation");
+        
 
         if (!_isInARView)
         {
@@ -589,12 +590,12 @@ public class GeospatialController : MonoBehaviour
 
 
         Debug.Log("-----------brf geospacialPoints.Collection.Count ---------------" + geospacialPoints.Collection.Count);
-        if (_anchorObjects.Count == 0 ||
-          (_anchorObjects.Count <= geospacialPoints.Collection.Count
-           && geospacialPoints.Collection.Count != 0))
-        {
-
-
+        // if (_anchorObjects.Count == 0 ||
+        //   (_anchorObjects.Count <= geospacialPoints.Collection.Count
+        //    && geospacialPoints.Collection.Count != 0))
+        // {
+        if (_anchorObjects.Count == 0){
+            ResolveHistory();
 
             Debug.Log("------------ geospacialPoints.Collection.Count -------" + geospacialPoints.Collection.Count);
         }
@@ -745,7 +746,7 @@ public class GeospatialController : MonoBehaviour
 
         // Quaternion eunRotation = history.heading == 0f ? point.EunRotation : history.eunRotation;
 
-        Quaternion eunRotation = Quaternion.AngleAxis((180f - (float)point.Heading), Vector3.up);
+        
         Debug.Log(history.Title + " anchor is null");
 
         try
@@ -755,16 +756,18 @@ public class GeospatialController : MonoBehaviour
             //---------------------------------------------------//
             var Height = history.Terrain ? history.TerainHeigt : history.Altitude;
 
-
+            Quaternion eunRotation = Quaternion.AngleAxis((180f - (float)point.Heading), Vector3.up);
             Debug.Log(history.Terrain + "------------ history.Terrain ----------");
             //----------------------------------------------------//
             // Create Geospaciale Anchor and resolve Terain Anchore
             //----------------------------------------------------//
+
+            //history.Terrain
             var anchor = history.Terrain ?
                 AnchorManager.ResolveAnchorOnTerrain(
-                    history.Latitude, history.Longitude, Height, Quaternion.identity) :
+                    history.Latitude, history.Longitude, Height, eunRotation) :
                 AnchorManager.AddAnchor(
-                    history.Latitude, history.Longitude, history.Altitude, Quaternion.identity);
+                    history.Latitude, history.Longitude, history.Altitude, eunRotation);
 
             // ----------------- Debugging -------------------------//
             Debug.Log(anchor.transform + "anchor instanstiated");
@@ -859,11 +862,11 @@ public class GeospatialController : MonoBehaviour
                 if (IsInRange(history) && !Array.Exists(_InstantiatedAnchors, element => element == history.Title))
                 {
                     Debug.Log("IsInRange(history) && !Array.Exists(_InstantiatedAnchors, element => element == history.Title)");
-                    PlaceGeospatialAnchor(history);
+                   
 
                 }
 
-
+                PlaceGeospatialAnchor(history);
             }
             catch (Exception ex)
             {
