@@ -25,9 +25,11 @@ public class AnchoreData
 
     public float Qua_x { get; set; }
 
+    public string URL { get; set; }
+
     public AnchoreData(string Title, string Discription, string FullDiscription, double Latitude
                       , double Longitude, double Altitude, double Heading, float Qua_x, float Qua_Y,
-                      float Qua_Z)
+                      float Qua_Z, string URL)
     {
         this.Title = Title;
         this.Description = Discription;
@@ -39,6 +41,7 @@ public class AnchoreData
         this.Qua_x = Qua_x;
         this.Qua_Y = Qua_Y;
         this.Qua_Z = Qua_Z;
+        this.URL = URL;
 
     }
 

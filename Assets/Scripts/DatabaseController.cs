@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using TMPro;
 using Firebase.Auth;
 using UnityEngine.UI;
+using Firebase.Storage;
 
 public class DatabaseController : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class DatabaseController : MonoBehaviour
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
+
+    private FirebaseStorage storage;
 
     [SerializeField]
     TMP_InputField phoneNumber;
@@ -64,6 +67,7 @@ public class DatabaseController : MonoBehaviour
              // where app is a Firebase.FirebaseApp property of your application class.
              app = Firebase.FirebaseApp.DefaultInstance;
              firebaseAuth = FirebaseAuth.DefaultInstance;
+             storage = FirebaseStorage.DefaultInstance;
              // Get a reference to the storage service, using the default Firebase App
              //FirebaseStorage storage = FirebaseStorage.DefaultInstance;
              isUserIsSignedIn();
@@ -94,26 +98,26 @@ public class DatabaseController : MonoBehaviour
     /// Creates a New Anchore In DataBase.
     /// </summary>
     // CreateAnchore;
-    private void CreateAnchore(string Title,
-     string Description,
-      string FullDiscription,
-      double Latitude
-     , double Longitude,
-      double Altitude,
-       double Heading,
-       float Qua_Z,
-       float Qua_Y,
-       float Qua_x)
-    {
+    // private void CreateAnchore(string Title,
+    //  string Description,
+    //   string FullDiscription,
+    //   double Latitude
+    //  , double Longitude,
+    //   double Altitude,
+    //    double Heading,
+    //    float Qua_Z,
+    //    float Qua_Y,
+    //    float Qua_x,URL)
+    // {
 
-        AnchoreData anchor = new AnchoreData
-        (Title, Description, FullDiscription, Latitude
-        , Longitude, Altitude, Heading, Qua_x, Qua_Y, Qua_Z);
-        string json = JsonUtility.ToJson(anchor);
+    //     AnchoreData anchor = new AnchoreData
+    //     (Title, Description, FullDiscription, Latitude
+    //     , Longitude, Altitude, Heading, Qua_x, Qua_Y, Qua_Z , URL);
+    //     string json = JsonUtility.ToJson(anchor);
 
 
 
-    }
+    // }
 
     /// <summary>
     /// Takes The User Phone and Enable User to loge in Using It and create a new User ifnot Exist.

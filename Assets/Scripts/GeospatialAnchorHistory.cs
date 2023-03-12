@@ -93,6 +93,8 @@ public struct GeospatialAnchorHistory
     public bool Terrain;
     public double TerainHeigt;
 
+    public string URL;
+
     /// <summary>
     /// Construct a Geospatial Anchor history.
     /// </summary>
@@ -109,7 +111,7 @@ public struct GeospatialAnchorHistory
     /// </param>
     public GeospatialAnchorHistory(DateTime time, string Id, double Latitude, double Longitude,
         double Altitude, Quaternion EunRotation, string Title = "",
-        string Description = "", string FullDiscription = "",
+        string Description = "", string FullDiscription = "", string URL = "",
         double TerainHeigt = 0.0f, bool Terrain = true, bool ManualHeight = false,
          bool IsLeftToPoint = false)
     {
@@ -123,7 +125,7 @@ public struct GeospatialAnchorHistory
         this.FullDiscription = FullDiscription;
         this.Description = Description;
         this.Instaniated = true;
-
+        this.URL = URL;
         this.IsLeftToPoint = IsLeftToPoint;
         this.Terrain = true;
         this.TerainHeigt = TerainHeigt;

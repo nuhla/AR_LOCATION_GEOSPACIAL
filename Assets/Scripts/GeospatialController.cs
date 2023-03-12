@@ -325,7 +325,7 @@ public class GeospatialController : MonoBehaviour
                                 historyanchor.FullDiscription + " ,\n " + historyanchor.Altitude + " ,\n "
                                 + historyanchor.Title +
                                  "\n Instaniated" + historyanchor.Instaniated
-                                 + "\n ManualHeight");
+                                 + "\n ManualHeight" +historyanchor.URL);
 
                                 geospacialPoints.Collection.Add(historyanchor);
 
@@ -523,7 +523,9 @@ public class GeospatialController : MonoBehaviour
         UpdateDebugInfo();
 
         // Check session error status.
+        // ResolveHistory();
         _shouldResolvingHistory._shouldResolvingHistory =!(geospacialPoints.Collection.Count == _InstantiatedAnchors.Count);
+        
         LifecycleUpdate();
         if (_isReturning)
         {
