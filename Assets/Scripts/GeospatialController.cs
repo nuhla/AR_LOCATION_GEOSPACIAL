@@ -241,8 +241,8 @@ public class GeospatialController : MonoBehaviour
     {
 
         GeoCoordinate GeoPoint = new GeoCoordinate(Point.Latitude, Point.Longitude, Point.Latitude);
-        //GeospatialPose myPostion = EarthManager.CameraGeospatialPose;
-        GeoCoordinate myPostionGeo = new GeoCoordinate(31.896467, 35.175257, 815.03);
+        GeospatialPose myPostion = EarthManager.CameraGeospatialPose;
+        GeoCoordinate myPostionGeo = new GeoCoordinate(myPostion.Latitude, myPostion.Longitude, myPostion.Altitude);
         double distance = myPostionGeo.GetDistanceTo(GeoPoint);
         if (distance < _DistanceToCreatAnchor)
         {
@@ -511,8 +511,7 @@ public class GeospatialController : MonoBehaviour
     public void Update()
     {
         GoToIndoorMood();
-        //SceneManager.LoadScene("OuterNavigation");
-        Debug.Log(_anchorObjects.Count + "_anchorObjects.Count" + geospacialPoints.Collection.Count + "_InstantiatedAnchors.Count");
+        
      
 
         if (!_isInARView)
@@ -524,6 +523,7 @@ public class GeospatialController : MonoBehaviour
         UpdateDebugInfo();
 
         // Check session error status.
+        _shouldResolvingHistory._shouldResolvingHistory =!(geospacialPoints.Collection.Count == _InstantiatedAnchors.Count);
         LifecycleUpdate();
         if (_isReturning)
         {
@@ -592,20 +592,14 @@ public class GeospatialController : MonoBehaviour
             return;
         }
 
-
-        Debug.Log("-----------brf geospacialPoints.Collection.Count ---------------" + geospacialPoints.Collection.Count);
-        // if (_anchorObjects.Count == 0 ||
-        //   (_anchorObjects.Count <= geospacialPoints.Collection.Count
-        //    && geospacialPoints.Collection.Count != 0))
-        // {
-
-
         if (_anchorObjects.Count < geospacialPoints.Collection.Count)
         {
             ResolveHistory();
 
-            Debug.Log("------------ geospacialPoints.Collection.Count -------" + geospacialPoints.Collection.Count);
         }
+
+
+
         // Check earth localization.
         bool isSessionReady = ARSession.state == ARSessionState.SessionTracking &&
             Input.location.status == LocationServiceStatus.Running;
@@ -667,11 +661,10 @@ public class GeospatialController : MonoBehaviour
                 go.SetActive(true);
             }
 
-
-
+           
 
         }
-
+       
 
         // Set anchor on screen tap.
         if (earthTrackingState == TrackingState.Tracking)
@@ -754,8 +747,6 @@ public class GeospatialController : MonoBehaviour
         // Quaternion eunRotation = history.heading == 0f ? point.EunRotation : history.eunRotation;
 
 
-        Debug.Log(history.Title + " anchor is null");
-
         try
         {
             //---------------------------------------------------//
@@ -770,9 +761,6 @@ public class GeospatialController : MonoBehaviour
             //----------------------------------------------------//
             
 
-            Debug.Log("----------------- history.Id ----------"+history.Id +"_InstantiatedAnchors.Contains(history.Id)"+_InstantiatedAnchors.Contains(history.Id));
-           
-
             //history.Terrain
             var anchor = history.Terrain ?
                 AnchorManager.ResolveAnchorOnTerrain(
@@ -781,8 +769,7 @@ public class GeospatialController : MonoBehaviour
                     history.Latitude, history.Longitude, history.Altitude, eunRotation);
 
             // ----------------- Debugging -------------------------//
-            Debug.Log(anchor.transform + "anchor instanstiated");
-            Debug.Log(" History Values" + history.Latitude + " , " + history.Longitude + " , " + Height);
+           
 
             if (anchor != null)
             {
@@ -793,7 +780,7 @@ public class GeospatialController : MonoBehaviour
                 Instantiate(TerrainPrefab, anchor.transform) :
                 Instantiate(GeospatialPrefab, anchor.transform);
                 history.Instaniated = true;
-
+                _InstantiatedAnchors.Add(history.Id);
 
 
                 //----------------------------------------------//
@@ -818,8 +805,7 @@ public class GeospatialController : MonoBehaviour
                 }
 
                 _anchorObjects.Add(anchor.gameObject);
-
-                _InstantiatedAnchors.Add(history.Id);
+               
                 Debug.Log("in _anchorObjects add");
 
                 if (terrain)
@@ -872,6 +858,8 @@ public class GeospatialController : MonoBehaviour
 
             try
             {
+                Debug.Log(IsInRange(history));
+                Debug.Log(history.Id +"history.Id");
 
                 if (IsInRange(history)){
 
@@ -881,7 +869,7 @@ public class GeospatialController : MonoBehaviour
                     }
                     
 
-                }
+               }
                 
             }
             catch (Exception ex)
