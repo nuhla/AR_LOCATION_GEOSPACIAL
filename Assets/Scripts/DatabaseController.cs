@@ -10,6 +10,7 @@ using TMPro;
 using Firebase.Auth;
 using UnityEngine.UI;
 using Firebase.Storage;
+using UnityEngine.SceneManagement;
 
 public class DatabaseController : MonoBehaviour
 {
@@ -142,6 +143,7 @@ public class DatabaseController : MonoBehaviour
           verificationFailed: (error) =>
           {
               debug.text = "verification Failed  - " + error;
+              debug.gameObject.SetActive(true);
               VarifyCode.gameObject.SetActive(false);
               SignIn.enabled = false;
 
@@ -153,6 +155,7 @@ public class DatabaseController : MonoBehaviour
               VerificationId = id;
               VarifyCode.gameObject.SetActive(true);
               SignIn.gameObject.SetActive(false);
+              debug.gameObject.SetActive(false);
 
               //SignInWithCredential(id, Code);
               // Verification code was successfully sent via SMS.
@@ -168,7 +171,9 @@ public class DatabaseController : MonoBehaviour
               string[] varvtcartionCode = id.Split("-");
               string code = varvtcartionCode[varvtcartionCode.Length - 1];
               VarifyCode.gameObject.SetActive(true);
+              debug.gameObject.SetActive(true);
               debug.text = "codeAutoRetrievalTimeOut  : " + code;
+              debug.gameObject.SetActive(true);
               // Called when the auto-sms-retrieval has timed out, based on the given
               // timeout parameter.
               // `id` contains the verification id of the request that timed out.
@@ -184,6 +189,7 @@ public class DatabaseController : MonoBehaviour
     {
 
         string Code = outPutCode.text;
+        Debug.Log(outPutCode.text);
 
         SignInWithCredential(Code);
 
@@ -219,6 +225,8 @@ public class DatabaseController : MonoBehaviour
             // The phone number providerID is 'phone'.
             debug.text += ("Phone provider ID: " + firebaseUser.ProviderId);
             UnityEngine.PlayerPrefs.SetString("ProviderId", firebaseUser.ProviderId);
+
+            SceneManager.LoadScene("Main");
         });
     }
 

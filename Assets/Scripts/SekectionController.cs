@@ -72,22 +72,22 @@ public class SekectionController : MonoBehaviour
 
                     }
 
-                    else if (navigateButton != null)
-                    {
+                    // else if (navigateButton != null)
+                    // {
 
 
 
-                        //---------------- For Debugging Purpose --------------//
-                        MeshRenderer meshRenderer = navigateButton.GetComponent<MeshRenderer>();
-                        //---------------- For Debugging Purpose --------------//
-                        meshRenderer.material.color = InactiveColor;
+                    //     //---------------- For Debugging Purpose --------------//
+                    //     MeshRenderer meshRenderer = navigateButton.GetComponent<MeshRenderer>();
+                    //     //---------------- For Debugging Purpose --------------//
+                    //     meshRenderer.material.color = InactiveColor;
 
-                        PlayerPrefs.SetString("Latitude", navigateButton.data.Latitude.ToString());
-                        PlayerPrefs.SetString("Longitude", navigateButton.data.Longitude.ToString());
-                        PlayerPrefs.SetString("altitud", navigateButton.data.Altitude.ToString());
-                        StopAllCoroutines();
-                        SceneManager.LoadScene("OuterNavigation");
-                    }
+                    //     // PlayerPrefs.SetString("Latitude", navigateButton.data.Latitude.ToString());
+                    //     // PlayerPrefs.SetString("Longitude", navigateButton.data.Longitude.ToString());
+                    //     // PlayerPrefs.SetString("altitud", navigateButton.data.Altitude.ToString());
+                    //     // StopAllCoroutines();
+                    //     // SceneManager.LoadScene("OuterNavigation");
+                    // }
 
                 }
 

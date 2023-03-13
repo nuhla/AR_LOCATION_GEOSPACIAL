@@ -7,7 +7,7 @@ namespace ARLocation.MapboxRoutes
 {
     public class RouteLoader
     {
-        public static string _error;
+      
 
         MapboxApi mapbox;
         bool verbose;
@@ -26,7 +26,7 @@ namespace ARLocation.MapboxRoutes
             if (api == null)
             {
                 Debug.LogError("[RouteLoader]: api is null.");
-                _error = "[RouteLoader]: api is null.";
+               
 
             }
 
@@ -34,7 +34,7 @@ namespace ARLocation.MapboxRoutes
             {
 
                 Debug.LogError("[RouteLoader]: mapbox is null.");
-                _error = "[RouteLoader]: mapbox is null.";
+                
             }
         }
 
@@ -52,7 +52,7 @@ namespace ARLocation.MapboxRoutes
             if (verbose)
             {
                 Utils.Logger.LogFromMethod("RouteLoader", "LoadRoute", $"Loading route from {start} to {end}", verbose);
-                _error = "RouteLoader" + "LoadRoute" + "Loading route from ";
+              
             }
 
             // Resolve start location
@@ -63,7 +63,7 @@ namespace ARLocation.MapboxRoutes
             if (resolver.IsError)
             {
                 Utils.Logger.LogFromMethod("RouteLoader", "LoadRoute", $"Failed to resolve start waypoint: {resolver.ErrorMessage}", true);
-                _error = resolver.ErrorMessage;
+                
                 error = resolver.ErrorMessage;
 
                 result = null;
@@ -82,7 +82,7 @@ namespace ARLocation.MapboxRoutes
                 Utils.Logger.LogFromMethod("RouteLoader", "LoadRoute", $"Failed to resolve end waypoint: {resolver.ErrorMessage}", true);
 
                 error = resolver.ErrorMessage;
-_error = resolver.ErrorMessage;
+
                 result = null;
 
                 yield break;
@@ -105,7 +105,7 @@ _error = resolver.ErrorMessage;
 
                 Utils.Logger.LogFromMethod("RouteLoader", "LoadRoute", $"Route query failed: {mapbox.errorMessage}", true);
                 error = resolver.ErrorMessage;
-                _error = resolver.ErrorMessage;
+               
 
                 result = null;
 
