@@ -22,8 +22,16 @@ public class PannalData : MonoBehaviour
 
     private void OnEnable()
     {
-        // Title.text = data.Title;
-        // Discription.text = data.FullDiscription;
+        // if (Title != null)
+        // {
+        //     Title.text = data.Title;
+        //     Discription.text = data.Description;
+        // }
+        // else
+        // {
+        //     Discription.text = data.FullDiscription;
+        // }
+
     }
 
     public void OpenReadMore()
@@ -46,6 +54,15 @@ public class PannalData : MonoBehaviour
 
     }
 
+    public void OpenMe()
+    {
+        ReadMore.gameObject.GetComponent<PannalData>().data = data;
+        Title.text = data.Title;
+        Discription.text = data.Description;
+        gameObject.SetActive(true);
+
+    }
+
     public void OpenGo()
     {
         PlayerPrefs.SetString("Latitude", data.Latitude.ToString());
@@ -59,6 +76,19 @@ public class PannalData : MonoBehaviour
         StopAllCoroutines();
         SceneManager.LoadScene("OuterNavigation");
     }
-    // Update is called once per frame
+
+    public void GoToUserProfile()
+    {
+        StopAllCoroutines();
+        SceneManager.LoadScene("UserProfile");
+    }
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void Home()
+    {
+        SceneManager.LoadScene("Main");
+    }
 
 }

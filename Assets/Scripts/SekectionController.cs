@@ -70,19 +70,10 @@ public class SekectionController : MonoBehaviour
 
                         //---------------- Set Data To Window --------------//
                         Pannel.gameObject.GetComponent<PannalData>().data = placmentObject.data;
-                        Pannel.SetActive(true);
+                        Pannel.gameObject.GetComponent<PannalData>().OpenMe();
 
                     }
 
-                    // else if (navigateButton != null)
-                    // {
-
-
-
-                    //     //---------------- For Debugging Purpose --------------//
-                    //     MeshRenderer meshRenderer = navigateButton.GetComponent<MeshRenderer>();
-                    //     //---------------- For Debugging Purpose --------------//
-                    //     meshRenderer.material.color = InactiveColor;
 
 
                 }
