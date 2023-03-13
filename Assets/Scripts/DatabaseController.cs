@@ -155,7 +155,8 @@ public class DatabaseController : MonoBehaviour
               VerificationId = id;
               VarifyCode.gameObject.SetActive(true);
               SignIn.gameObject.SetActive(false);
-              debug.gameObject.SetActive(false);
+              debug.text = "Code Was Sent";
+              debug.gameObject.SetActive(true);
 
               //SignInWithCredential(id, Code);
               // Verification code was successfully sent via SMS.

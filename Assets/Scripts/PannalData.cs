@@ -8,7 +8,9 @@ using UnityEngine.SceneManagement;
 public class PannalData : MonoBehaviour
 {
     public GameObject ReadMore;
+
     private RouteLoader routeLoader;
+
     public AnchoreData data = new AnchoreData();
     [SerializeField]
     private TMP_Text Title;
@@ -17,16 +19,29 @@ public class PannalData : MonoBehaviour
 
 
 
+
     private void OnEnable()
     {
-        Title.text = data.Title;
-        Discription.text = data.FullDiscription;
+        // Title.text = data.Title;
+        // Discription.text = data.FullDiscription;
     }
 
     public void OpenReadMore()
     {
-        ReadMore.gameObject.GetComponent<AnchoreData>().FullDiscription = data.FullDiscription;
-        ReadMore.gameObject.GetComponent<AnchoreData>().Title = data.Title;
+        ReadMore.gameObject.GetComponent<PannalData>().data = data;
+        Title.text = data.Title;
+        Discription.text = data.Description;
+        // ReadMore.gameObject.GetComponent<PannalData>().data.Title = data.Title;
+        ReadMore.SetActive(true);
+
+    }
+
+    public void OpenReadLess()
+    {
+        ReadMore.gameObject.GetComponent<PannalData>().data = data;
+        // ReadMore.gameObject.GetComponent<AnchoreData>().Title = data.Title;
+        // Title.text = data.Title;
+        Discription.text = data.FullDiscription;
         ReadMore.SetActive(true);
 
     }
@@ -36,6 +51,11 @@ public class PannalData : MonoBehaviour
         PlayerPrefs.SetString("Latitude", data.Latitude.ToString());
         PlayerPrefs.SetString("Longitude", data.Longitude.ToString());
         PlayerPrefs.SetString("altitud", data.Altitude.ToString());
+
+    }
+
+    public void StartNavgation()
+    {
         StopAllCoroutines();
         SceneManager.LoadScene("OuterNavigation");
     }

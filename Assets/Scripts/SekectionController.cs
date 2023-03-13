@@ -39,6 +39,8 @@ public class SekectionController : MonoBehaviour
     }
 
 
+  
+
     // Update is called once per frame
     void Update()
     {
@@ -82,12 +84,6 @@ public class SekectionController : MonoBehaviour
                     //     //---------------- For Debugging Purpose --------------//
                     //     meshRenderer.material.color = InactiveColor;
 
-                    //     // PlayerPrefs.SetString("Latitude", navigateButton.data.Latitude.ToString());
-                    //     // PlayerPrefs.SetString("Longitude", navigateButton.data.Longitude.ToString());
-                    //     // PlayerPrefs.SetString("altitud", navigateButton.data.Altitude.ToString());
-                    //     // StopAllCoroutines();
-                    //     // SceneManager.LoadScene("OuterNavigation");
-                    // }
 
                 }
 

@@ -715,19 +715,13 @@ struct Route_t65233920818BB3FDF557CCB00357C155AEB6543E  : public RuntimeObject
 struct RouteLoader_tE4FE009BCC4C874C70AE3377EE67D0ED8157A196  : public RuntimeObject
 {
 	// ARLocation.MapboxRoutes.MapboxApi ARLocation.MapboxRoutes.RouteLoader::mapbox
-	MapboxApi_t066AB897CBDEAE033CF39436666B12A6422C37AA* ___mapbox_1;
+	MapboxApi_t066AB897CBDEAE033CF39436666B12A6422C37AA* ___mapbox_0;
 	// System.Boolean ARLocation.MapboxRoutes.RouteLoader::verbose
-	bool ___verbose_2;
+	bool ___verbose_1;
 	// System.String ARLocation.MapboxRoutes.RouteLoader::error
-	String_t* ___error_3;
+	String_t* ___error_2;
 	// ARLocation.MapboxRoutes.RouteResponse ARLocation.MapboxRoutes.RouteLoader::result
-	RouteResponse_tF189AFDEBA06C17330596DD4CC373AA90A1DB212* ___result_4;
-};
-
-struct RouteLoader_tE4FE009BCC4C874C70AE3377EE67D0ED8157A196_StaticFields
-{
-	// System.String ARLocation.MapboxRoutes.RouteLoader::_error
-	String_t* ____error_0;
+	RouteResponse_tF189AFDEBA06C17330596DD4CC373AA90A1DB212* ___result_3;
 };
 
 // ARLocation.MapboxRoutes.RouteResponse

@@ -3103,7 +3103,7 @@ struct FirebaseApp_tD23C437863A3502177988D1382B58820B0571A25  : public RuntimeOb
 	// System.EventHandler Firebase.FirebaseApp::AppDisposed
 	EventHandler_tC6323FD7E6163F965259C33D72612C0E5B9BAB82* ___AppDisposed_4;
 	// Firebase.Platform.FirebaseAppPlatform Firebase.FirebaseApp::appPlatform
-	FirebaseAppPlatform_t5AD8517EA34467536BAC8C7C6EB4D4B6880312A2* ___appPlatform_15;
+	FirebaseAppPlatform_t5AD8517EA34467536BAC8C7C6EB4D4B6880312A2* ___appPlatform_16;
 };
 
 struct FirebaseApp_tD23C437863A3502177988D1382B58820B0571A25_StaticFields
@@ -3122,10 +3122,12 @@ struct FirebaseApp_tD23C437863A3502177988D1382B58820B0571A25_StaticFields
 	bool ___PreventOnAllAppsDestroyed_9;
 	// System.Boolean Firebase.FirebaseApp::crashlyticsInitializationAttempted
 	bool ___crashlyticsInitializationAttempted_10;
+	// System.Boolean Firebase.FirebaseApp::userAgentRegistered
+	bool ___userAgentRegistered_11;
 	// System.Int32 Firebase.FirebaseApp::CheckDependenciesThread
-	int32_t ___CheckDependenciesThread_13;
+	int32_t ___CheckDependenciesThread_14;
 	// System.Object Firebase.FirebaseApp::CheckDependenciesThreadLock
-	RuntimeObject* ___CheckDependenciesThreadLock_14;
+	RuntimeObject* ___CheckDependenciesThreadLock_15;
 };
 
 // Firebase.FirebaseException
