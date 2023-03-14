@@ -128,6 +128,7 @@ namespace ARLocation.MapboxRoutes
                 var result = new Step();
 
                 result.distance = node["distance"].AsFloat;
+
                 result.geometry = Geometry.Parse(node["geometry"]);
                 result.maneuver = Maneuver.Parse(node["maneuver"]);
                 result.name = node["name"];
@@ -170,6 +171,8 @@ namespace ARLocation.MapboxRoutes
         }
 
         public float distance;
+
+        public float duration;
         public Geometry geometry;
         public List<RouteLeg> legs;
         public string name;
@@ -179,6 +182,7 @@ namespace ARLocation.MapboxRoutes
             var result = new Route();
 
             result.distance = node["distance"].AsFloat;
+            result.duration = node["duration"].AsFloat;
             result.geometry = Geometry.Parse(node["geometry"]);
             result.legs = new List<RouteLeg>();
 
@@ -196,7 +200,7 @@ namespace ARLocation.MapboxRoutes
         {
             string result = "";
 
-            result += $"Route{{ distance = {distance}, geometry = {geometry}, legs = [";
+            result += $"Route{{ distance = {distance}, duration ={duration}, geometry = {geometry}, legs = [";
 
             foreach (var leg in legs)
             {

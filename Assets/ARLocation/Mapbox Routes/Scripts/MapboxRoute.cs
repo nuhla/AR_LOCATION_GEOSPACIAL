@@ -14,7 +14,8 @@ namespace ARLocation.MapboxRoutes
 
         public TMP_Text ErrorText;
         public TMP_Text DiatanceText;
-        public TMP_Text NearTo;
+        public TMP_Text TimeTxt;
+        public TMP_Text NumberOfStepsText;
 
         [Serializable]
         public class MapboxRouteLoadErrorEvent : UnityEvent<string> { }
@@ -318,6 +319,7 @@ namespace ARLocation.MapboxRoutes
         /// </summary>
         public bool BuildRoute(RouteResponse result)
         {
+            
             clearRoute();
 
 //            Debug.Log(" -----------in Loader ------------" + result.ToString());
@@ -378,6 +380,8 @@ namespace ARLocation.MapboxRoutes
             s.RouteGeometry = route.geometry;
            
             DiatanceText.text= leg.distance.ToString();
+            TimeTxt.text = result.duration.ToString();
+
             Debug.Log(" ----------- leg.steps; ------------" + leg.steps);
             Debug.Log(" ----------- leg.distance ------------" + leg.distance);
             Debug.Log(" ----------- route.geometry ------------" + route.geometry);
@@ -586,6 +590,7 @@ namespace ARLocation.MapboxRoutes
             else
             {
                 s.LoadRouteError = null;
+                
                 BuildRoute(loader.Result);
             }
         }

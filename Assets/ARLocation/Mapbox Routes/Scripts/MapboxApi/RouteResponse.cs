@@ -11,6 +11,7 @@ namespace ARLocation.MapboxRoutes
         public string Code;
         public List<Route> routes;
         public List<Waypoint> waypoints;
+        public double duration;
 
         public override string ToString()
         {
@@ -50,6 +51,7 @@ namespace ARLocation.MapboxRoutes
             result.waypoints = new List<Waypoint>();
 
             result.Code = node["code"].Value;
+            result.duration = double.Parse(node["duration"].Value); 
 
             var arr = node["routes"].AsArray;
 

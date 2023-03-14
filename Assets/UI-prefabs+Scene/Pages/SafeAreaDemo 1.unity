@@ -7017,6 +7017,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Home Screen (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5320994293525764130, guid: 4b0ce2cdc9593e944992f406ef2bf6b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b0ce2cdc9593e944992f406ef2bf6b1, type: 3}
 --- !u!1001 &1978296398468699566
@@ -7813,6 +7817,10 @@ PrefabInstance:
     - target: {fileID: 647049414935558592, guid: 26cf86f3514aa9042960e21e91f28a27, type: 3}
       propertyPath: m_Name
       value: Home Screen (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 647049414935558592, guid: 26cf86f3514aa9042960e21e91f28a27, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5856668165020051423, guid: 26cf86f3514aa9042960e21e91f28a27, type: 3}
       propertyPath: m_Pivot.x

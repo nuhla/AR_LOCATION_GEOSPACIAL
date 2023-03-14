@@ -10,6 +10,7 @@ using Mapbox.Unity.Location;
 using ARLocation;
 using static ARLocation.MapboxRoutes.MapboxRoute;
 using System;
+using static Mercator;
 
 public enum LineType
 {
@@ -19,10 +20,13 @@ public enum LineType
 public class RoutOrgnizer : MonoBehaviour
 {
 
+    private double lat;
+    private double lang;
+    private double alt;
 
-
+    private bool _CheckIsItDone = false;
     private SettingsData settings = new SettingsData();
-
+    public GameObject Done;
 
 
     public MapboxRoute route;
@@ -51,9 +55,9 @@ public class RoutOrgnizer : MonoBehaviour
             /// </summary>
 
 
-            var lat = double.Parse(PlayerPrefs.GetString("Latitude"));
-            var lang = double.Parse(PlayerPrefs.GetString("Longitude"));
-            var alt = double.Parse(PlayerPrefs.GetString("altitud"));
+            lat = double.Parse(PlayerPrefs.GetString("Latitude"));
+            lang = double.Parse(PlayerPrefs.GetString("Longitude"));
+            alt = double.Parse(PlayerPrefs.GetString("altitud"));
 
             Debug.Log(lat + "," + lang + "," + alt);
 
@@ -71,6 +75,28 @@ public class RoutOrgnizer : MonoBehaviour
 
 
 
+    private void Update()
+    {
+        if (EarthManager.EarthTrackingState == TrackingState.Tracking && !_CheckIsItDone)
+        {
+            GeospatialPose POS = EarthManager.CameraGeospatialPose;
+            GeoCoordinate UserPlace = new GeoCoordinate(POS.Latitude, POS.Longitude, POS.Altitude);
+            GeoCoordinate PlaceLocation = new GeoCoordinate(lat, lang, alt);
+
+            double distance = PlaceLocation.GetDistanceTo(UserPlace);
+            if (distance <= 2)
+            {
+
+                Debug.Log("you Reach The Point");
+                _CheckIsItDone = true;
+                Done.gameObject.SetActive(true);
+
+            }
+        }
+
+
+
+    }
 
 
 
