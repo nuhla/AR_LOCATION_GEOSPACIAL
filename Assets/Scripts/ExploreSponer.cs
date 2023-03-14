@@ -14,12 +14,14 @@ public class ExploreSponer : MonoBehaviour
     public GameObject parent;
     public bool _CreatChilds = false;
 
-    private string MapboxToken="pk.eyJ1IjoiYXJ0ZWxvIiwiYSI6ImNsZWtrY2g0dTBtOGQzcm5wNWd6ajd4OW0ifQ.kuIQLXklaS1BTG4DALtTWg";
+    
     public List<GeospatialAnchorHistory> PrefabsCollection = new List<GeospatialAnchorHistory>();
     public List<GameObject> InstantiatedGameObects = new List<GameObject>();
     private object currentPathRenderer;
 
     public AREarthManager EarthManager;
+
+    public MapboxRoute route;
 
     // Start is called before the first frame update
     private async void Awake()
@@ -114,7 +116,7 @@ public class ExploreSponer : MonoBehaviour
         Geo.transform.parent = parent.transform;
         
 
-        getDistance(data);
+        
         InstantiatedGameObects.Add(Geo);
 
 
@@ -122,14 +124,7 @@ public class ExploreSponer : MonoBehaviour
     }
 
 
-    public void getDistance(GeospatialAnchorHistory data){
-
-       // GeospatialPose point = EarthManager.CameraGeospatialPose;
-        var api = new MapboxApi(MapboxToken);
-        var loader = new RouteLoader(api);
-        // StartCoroutine(
-        //         api.QueryRoute()
-    }
+  
     public IEnumerator getAnchores(Action<DataSnapshot> onCallback)
     {
         

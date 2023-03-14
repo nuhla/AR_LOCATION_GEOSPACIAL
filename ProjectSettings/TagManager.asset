@@ -16,6 +16,7 @@ TagManager:
   - DiscriptionText
   - MapboxRoute
   - ErrorMessage
+  - Explore
   layers:
   - Default
   - TransparentFX
