@@ -8,14 +8,12 @@ namespace ARLocation.MapboxRoutes
 {
     public class MapboxRoute : MonoBehaviour
     {
+
+        public TMP_Text DistanceText;
+        public TMP_Text durationText;
         // ================================================================================ //
         //  Public Classes                                                                  //
         // ================================================================================ //
-
-        public TMP_Text ErrorText;
-        public TMP_Text DiatanceText;
-        public TMP_Text TimeTxt;
-        public TMP_Text NumberOfStepsText;
 
         [Serializable]
         public class MapboxRouteLoadErrorEvent : UnityEvent<string> { }
@@ -120,7 +118,7 @@ namespace ARLocation.MapboxRoutes
         // ================================================================================ //
 
         [Serializable]
-       public class State
+        class State
         {
             public string LoadRouteError = null;
             public List<List<AbstractRouteSignpost>> SignPostInstances = new List<List<AbstractRouteSignpost>>();
@@ -136,7 +134,7 @@ namespace ARLocation.MapboxRoutes
         // ================================================================================ //
 
         private MapboxApi mapbox;
-        public State s = new State();
+        private State s = new State();
 
         // ================================================================================ //
         //  Monobehaviour methods                                                           //
@@ -244,8 +242,7 @@ namespace ARLocation.MapboxRoutes
                     }
                     else
                     {
-                        ErrorText.text ="MapboxRoute onLocationEnabled RouteType is 'Custom Route' but 'CustomRoute' is null; please set the 'Custom Route' property on the inspector panel.";
-                       Utils.Logger.ErrorFromMethod("MapboxRoute", "onLocationEnabled", "RouteType is 'Custom Route' but 'CustomRoute' is null; please set the 'Custom Route' property on the inspector panel.");
+                        Utils.Logger.ErrorFromMethod("MapboxRoute", "onLocationEnabled", "RouteType is 'Custom Route' but 'CustomRoute' is null; please set the 'Custom Route' property on the inspector panel.");
                         return;
                     }
                 }
@@ -319,16 +316,11 @@ namespace ARLocation.MapboxRoutes
         /// </summary>
         public bool BuildRoute(RouteResponse result)
         {
-            
             clearRoute();
-
-//            Debug.Log(" -----------in Loader ------------" + result.ToString());
 
             if (result.routes.Count == 0)
             {
-                Debug.Log(" -----------result.routes.Count == 0 ------------");
                 return false;
-
             }
 
             // We only support one route
@@ -336,7 +328,6 @@ namespace ARLocation.MapboxRoutes
 
             if (route.legs.Count == 0)
             {
-                Debug.Log(" -----------route.legs.Count == 0 ------------");
                 return false;
             }
 
@@ -348,9 +339,8 @@ namespace ARLocation.MapboxRoutes
             int c = 0;
             foreach (var step in leg.steps)
             {
-
                 var loc = step.maneuver.location;
-                Debug.Log(" ----------- step.maneuver.location ------------" + step.maneuver.location);
+
                 // Create a PlaceAtLocation gameObject for this step
                 var go = new GameObject($"PlaceAt_{c}");
 
@@ -377,30 +367,19 @@ namespace ARLocation.MapboxRoutes
 
             s.RouteSteps = leg.steps;
             s.RouteDistance = leg.distance;
-
             s.RouteGeometry = route.geometry;
-           
-            DiatanceText.text= leg.distance.ToString();
-
-
-            Debug.Log(" ----------- leg.steps; ------------" + leg.steps);
-            Debug.Log(" ----------- leg.distance ------------" + leg.distance);
-            Debug.Log(" ----------- route.geometry ------------" + route.geometry);
 
             // Set the first step as the current target
             SetTarget(0);
 
             if (Settings.PathRenderer != null)
             {
-                Debug.Log(" ----------- SetTarget ------------" + route.geometry);
                 Settings.PathRenderer.Init(createRoutePathRendererArgs());
             }
 
             if (Settings.OnScreenIndicator != null)
             {
-                Debug.Log(" ----------- OnScreenIndicator ------------");
                 Settings.OnScreenIndicator.Init(this);
-
             }
 
             return true;
@@ -566,7 +545,7 @@ namespace ARLocation.MapboxRoutes
         public System.Collections.IEnumerator LoadRoute(RouteWaypoint start, RouteWaypoint end, Action<string> callback)
         {
             yield return LoadRoute(start, end);
-            ErrorText.text =s.LoadRouteError;
+
             callback(s.LoadRouteError);
         }
 
@@ -584,14 +563,16 @@ namespace ARLocation.MapboxRoutes
             if (loader.Error != null)
             {
                 s.LoadRouteError = loader.Error;
-                ErrorText.text = loader.Error;
-                Debug.Log("============ ftom loader ");
                 Settings.OnMapboxRouteLoadError?.Invoke(loader.Error);
+
             }
             else
             {
                 s.LoadRouteError = null;
-                
+                DistanceText.text = ((float)(loader.Result.routes[0].distance * 0.001)).ToString() + " KM";
+                durationText.text = ((float)(loader.Result.routes[0].duration * 0.0166666667)).ToString() + " H";
+
+
                 BuildRoute(loader.Result);
             }
         }

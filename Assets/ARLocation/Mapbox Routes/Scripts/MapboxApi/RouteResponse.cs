@@ -11,7 +11,6 @@ namespace ARLocation.MapboxRoutes
         public string Code;
         public List<Route> routes;
         public List<Waypoint> waypoints;
-        
 
         public override string ToString()
         {
@@ -41,7 +40,6 @@ namespace ARLocation.MapboxRoutes
         public static RouteResponse Parse(string json)
         {
             return Parse(JSON.Parse(json));
-            
         }
 
         public static RouteResponse Parse(JSONNode node)
@@ -51,7 +49,6 @@ namespace ARLocation.MapboxRoutes
             result.waypoints = new List<Waypoint>();
 
             result.Code = node["code"].Value;
-            
 
             var arr = node["routes"].AsArray;
 

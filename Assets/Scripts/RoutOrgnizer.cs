@@ -103,7 +103,7 @@ public class RoutOrgnizer : MonoBehaviour
             GeoCoordinate PlaceLocation = new GeoCoordinate(lat, lang, alt);
 
             double distance = PlaceLocation.GetDistanceTo(UserPlace);
-            if (distance <= 2)
+            if (distance <= 4)
             {
 
                 Debug.Log("you Reach The Point");

@@ -82,7 +82,7 @@ namespace ARLocation.MapboxRoutes
         public class SettingsData
         {
             [Tooltip("The distance at which the target is deactivated and the next target is activated. Should be smaller than the sign-post FollowDistance and the direction arrow DropDistance.")]
-            public float DeactivationDistance = 2.0f;
+            public float DeactivationDistance = 10.0f;
         }
 
         // ================================================================================ //
