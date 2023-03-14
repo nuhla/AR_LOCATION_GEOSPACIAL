@@ -30,11 +30,13 @@ public class RoutOrgnizer : MonoBehaviour
 
 
     public MapboxRoute route;
+
+    public GameObject Charc;
     /// <summary>
     /// The AREarthManager used in the sample.
     /// </summary>
     public AREarthManager EarthManager;
-
+    private PlaceAtLocation placeAtLocation;
 
 
 
@@ -60,6 +62,22 @@ public class RoutOrgnizer : MonoBehaviour
             alt = double.Parse(PlayerPrefs.GetString("altitud"));
 
             Debug.Log(lat + "," + lang + "," + alt);
+            try
+            {
+                // placeAtLocation = Charc.GetComponent<PlaceAtLocation>();
+                // placeAtLocation.LocationOptions = new PlaceAtLocation.LocationSettingsData();
+                // placeAtLocation.LocationOptions.LocationInput.LocationInputType = LocationPropertyData.LocationPropertyType.Location;
+                // placeAtLocation.Location = new ARLocation.Location(lat, lang, alt);
+                // Charc.gameObject.SetActive(false);
+                // Debug.Log("88888888888888888888" + placeAtLocation.Location.Altitude + "," + placeAtLocation.Location.Latitude + "," + placeAtLocation.Location.Longitude);
+            }
+            catch (Exception ex)
+            {
+                Debug.Log("exp" + ex);
+            }
+
+
+
 
             settings.RouteSettings = new RouteSettings();
             settings.RouteSettings.To = new RouteWaypoint { Type = RouteWaypointType.Location };
@@ -77,6 +95,7 @@ public class RoutOrgnizer : MonoBehaviour
 
     private void Update()
     {
+
         if (EarthManager.EarthTrackingState == TrackingState.Tracking && !_CheckIsItDone)
         {
             GeospatialPose POS = EarthManager.CameraGeospatialPose;
@@ -90,6 +109,7 @@ public class RoutOrgnizer : MonoBehaviour
                 Debug.Log("you Reach The Point");
                 _CheckIsItDone = true;
                 Done.gameObject.SetActive(true);
+
 
             }
         }

@@ -18,14 +18,26 @@ public class ImageTexturere : MonoBehaviour
     private StorageReference stoeageRefrence;
     private RawImage image;
 
+    public string type;
+
 
     private void Awake()
     {
 
-        image = gameObject.GetComponent<RawImage>();
-        // imageTexturer = parent.gameObject.GetComponent<PannalData>().data.URL;
-        imageTexturer="Hebron.jpg";
-         
+        if (type == "Explore")
+        {
+            Debug.Log("In Texture");
+            imageTexturer = parent.gameObject.GetComponent<ExploreItemManager>().data.URL;
+            Debug.Log(parent.gameObject.GetComponent<ExploreItemManager>().data.URL + "55555555555555555");
+        }
+        else
+        {
+            image = gameObject.GetComponent<RawImage>();
+            imageTexturer = parent.gameObject.GetComponent<PannalData>().data.URL;
+            //imageTexturer = "Hebron.jpg";
+        }
+
+
     }
 
 

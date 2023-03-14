@@ -377,10 +377,11 @@ namespace ARLocation.MapboxRoutes
 
             s.RouteSteps = leg.steps;
             s.RouteDistance = leg.distance;
+
             s.RouteGeometry = route.geometry;
            
             DiatanceText.text= leg.distance.ToString();
-            TimeTxt.text = result.duration.ToString();
+
 
             Debug.Log(" ----------- leg.steps; ------------" + leg.steps);
             Debug.Log(" ----------- leg.distance ------------" + leg.distance);

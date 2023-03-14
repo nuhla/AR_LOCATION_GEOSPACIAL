@@ -510,9 +510,8 @@ public class GeospatialController : MonoBehaviour
     /// </summary>
     public void Update()
     {
+            
         GoToIndoorMood();
-        
-     
 
         if (!_isInARView)
         {
@@ -796,6 +795,7 @@ public class GeospatialController : MonoBehaviour
                 anchorGO.transform.GetComponent<MarkerData>().Marker.FullDiscription = history.FullDiscription;
                 anchorGO.transform.GetComponent<MarkerData>().Discription.text = history.FullDiscription;
                 anchorGO.transform.GetComponent<MarkerData>().Title.text = history.FullDiscription;
+                
 
 
                 SnackBarText.text = "Anchore with position = " + "x : " + anchor.transform.position.x.ToString()
@@ -846,9 +846,7 @@ public class GeospatialController : MonoBehaviour
 
         if (!_shouldResolvingHistory._shouldResolvingHistory)
         {
-            //InfoText.text += "_shouldResolvingHistory: " + _shouldResolvingHistory.ToString();
-
-            Debug.Log(_shouldResolvingHistory._shouldResolvingHistory);
+            
             return;
         }
 
