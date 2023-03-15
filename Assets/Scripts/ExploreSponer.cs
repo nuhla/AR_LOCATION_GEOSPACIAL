@@ -16,7 +16,7 @@ public class ExploreSponer : MonoBehaviour
 
     
     public List<GeospatialAnchorHistory> PrefabsCollection = new List<GeospatialAnchorHistory>();
-    public List<GameObject> InstantiatedGameObects = new List<GameObject>();
+    
     private object currentPathRenderer;
 
     public AREarthManager EarthManager;
@@ -115,10 +115,6 @@ public class ExploreSponer : MonoBehaviour
         Debug.Log(Geo.gameObject.GetComponent<ExploreItemManager>().data + "8888888888888888888");
         Geo.transform.parent = parent.transform;
         
-
-        
-        InstantiatedGameObects.Add(Geo);
-
 
 
     }

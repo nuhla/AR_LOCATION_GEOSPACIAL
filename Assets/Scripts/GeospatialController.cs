@@ -387,6 +387,7 @@ public class GeospatialController : MonoBehaviour
     /// </summary>
     public void OnEnable()
     {
+        Debug.Log("-----------OnEnable--------");
         _startLocationService = StartLocationService();
         StartCoroutine(_startLocationService);
         _isReturning = false;
@@ -500,18 +501,46 @@ public class GeospatialController : MonoBehaviour
         double distance = myPostionGeo.GetDistanceTo(GeoPoint);
         if (distance < 300)
         {
-            SceneManager.LoadScene("Hol9");
+            SceneManager.LoadScene("Hol9", LoadSceneMode.Single);
         }
 
     }
 
+    private void OnDestroy()
+    {
+
+
+
+        _waitingForLocationService = false;
+        _isInARView = false;
+        _isReturning = false;
+        _isLocalizing = false;
+        _enablingGeospatial = false; ShouldResolvingHistory _shouldResolvingHistory = new ShouldResolvingHistory();
+        _usingTerrainAnchor = true;
+        _localizationPassedTime = 0f;
+        _InstantiatedAnchors = new List<string>();
+        _configurePrepareTime = 3f;
+        _anchorObjects = new List<GameObject>();
+        _startLocationService = null;
+        _asyncCheck = null;
+
+        _historyCollection = null;
+        this.gameObject.SetActive(false);
+        Destroy(this);
+        Debug.Log("--------------In Destroy ----------------");
+    }
     /// <summary>
     /// Unity's Update() method.
     /// </summary>
     public void Update()
     {
-            
-        GoToIndoorMood();
+        // if (_anchorObjects.Count < geospacialPoints.Collection.Count)
+        // {
+
+        //     ResolveHistory();
+
+        // }
+
 
         if (!_isInARView)
         {
@@ -592,9 +621,10 @@ public class GeospatialController : MonoBehaviour
             SnackBarText.text = errorMessage;
             return;
         }
-
+        GoToIndoorMood();
         if (_anchorObjects.Count < geospacialPoints.Collection.Count)
         {
+
             ResolveHistory();
 
         }
@@ -849,6 +879,7 @@ public class GeospatialController : MonoBehaviour
             
             return;
         }
+        Debug.Log(!_shouldResolvingHistory._shouldResolvingHistory + "!_shouldResolvingHistory._shouldResolvingHistory");
 
         _shouldResolvingHistory._shouldResolvingHistory = false;
 
@@ -863,14 +894,16 @@ public class GeospatialController : MonoBehaviour
 
                 if (IsInRange(history)){
 
+
                     if (!_InstantiatedAnchors.Contains(history.Id))
                     {
+                        Debug.Log(_InstantiatedAnchors.Contains(history.Id) + "_InstantiatedAnchors.Contains(history.Id)");
                         PlaceGeospatialAnchor(history);
                     }
-                    
 
-               }
-                
+
+                }
+
             }
             catch (Exception ex)
             {

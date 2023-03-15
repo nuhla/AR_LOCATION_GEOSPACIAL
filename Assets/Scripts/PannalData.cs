@@ -74,21 +74,23 @@ public class PannalData : MonoBehaviour
     public void StartNavgation()
     {
         StopAllCoroutines();
-        SceneManager.LoadScene("OuterNavigation");
+        SceneManager.LoadScene("OuterNavigation", LoadSceneMode.Single);
     }
 
     public void GoToUserProfile()
     {
         StopAllCoroutines();
-        SceneManager.LoadScene("UserProfile");
+        SceneManager.LoadScene("UserProfile", LoadSceneMode.Single);
     }
     public void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StopAllCoroutines();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
     public void Home()
     {
-        SceneManager.LoadScene("Main");
+        StopAllCoroutines();
+        SceneManager.LoadScene("Main", LoadSceneMode.Single);
     }
 
 }
