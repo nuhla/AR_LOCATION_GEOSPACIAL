@@ -11,31 +11,18 @@ using System;
 public class ImageTexturere : MonoBehaviour
 {
 
-    private string imageTexturer;
-    public GameObject parent;
+    public string imageTexturer;
+    public PannalData data;
 
     private FirebaseStorage storage;
     private StorageReference stoeageRefrence;
-    private RawImage image;
+    public RawImage image;
 
-    public string type;
+
 
 
     private void Awake()
     {
-
-        if (type == "Explore")
-        {
-            Debug.Log("In Texture");
-            imageTexturer = parent.gameObject.GetComponent<ExploreItemManager>().data.URL;
-            Debug.Log(parent.gameObject.GetComponent<ExploreItemManager>().data.URL + "55555555555555555");
-        }
-        else
-        {
-            image = gameObject.GetComponent<RawImage>();
-            imageTexturer = parent.gameObject.GetComponent<PannalData>().data.URL;
-            //imageTexturer = "Hebron.jpg";
-        }
 
 
     }
@@ -43,7 +30,7 @@ public class ImageTexturere : MonoBehaviour
 
     private void Start()
     {
-        SetImage();
+        //SetImage();
     }
 
     public void SetImage()

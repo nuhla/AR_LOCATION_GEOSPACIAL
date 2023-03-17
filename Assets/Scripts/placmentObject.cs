@@ -7,7 +7,7 @@ public class placmentObject : MonoBehaviour
     // Start is called before the first frame update
     public bool IsSekected { get; set; }
 
-    public string Tag;
+
 
     public GameObject Parent;
 

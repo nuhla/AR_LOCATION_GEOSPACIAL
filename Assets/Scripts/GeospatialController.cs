@@ -825,7 +825,9 @@ public class GeospatialController : MonoBehaviour
                 anchorGO.transform.GetComponent<MarkerData>().Marker.FullDiscription = history.FullDiscription;
                 anchorGO.transform.GetComponent<MarkerData>().Discription.text = history.FullDiscription;
                 anchorGO.transform.GetComponent<MarkerData>().Title.text = history.FullDiscription;
-                
+                anchorGO.transform.GetComponent<MarkerData>().Marker.URL = history.URL;
+
+
 
 
                 SnackBarText.text = "Anchore with position = " + "x : " + anchor.transform.position.x.ToString()

@@ -4,10 +4,10 @@ using ARLocation.MapboxRoutes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class PannalData : MonoBehaviour
 {
-    public GameObject ReadMore;
+    public GameObject NextPannel;
 
     private RouteLoader routeLoader;
 
@@ -17,46 +17,61 @@ public class PannalData : MonoBehaviour
     [SerializeField]
     private TMP_Text Discription;
 
+    [SerializeField]
+    private TMP_Text FullDiscription;
 
+    [SerializeField]
+    private RawImage imge;
 
 
     private void OnEnable()
     {
-        // if (Title != null)
-        // {
-        //     Title.text = data.Title;
-        //     Discription.text = data.Description;
-        // }
-        // else
-        // {
-        //     Discription.text = data.FullDiscription;
-        // }
 
+
+        if (Discription != null)
+        {
+            Discription.text = data.Description;
+        }
+        if (FullDiscription != null)
+        {
+            FullDiscription.text = data.FullDiscription;
+        }
+        if (
+            Title != null
+        )
+        {
+            Title.text = data.Title;
+        }
+        if (imge != null)
+        {
+            imge.gameObject.GetComponent<ImageTexturere>().imageTexturer = data.URL;
+            ImageTexturere TxImg = imge.gameObject.GetComponent<ImageTexturere>();
+            TxImg.SetImage();
+        }
     }
+
+
 
     public void OpenReadMore()
     {
-        ReadMore.gameObject.GetComponent<PannalData>().data = data;
-        Title.text = data.Title;
-        Discription.text = data.Description;
-        // ReadMore.gameObject.GetComponent<PannalData>().data.Title = data.Title;
-        ReadMore.SetActive(true);
+        Debug.Log(data.URL + "data.URL;");
+        NextPannel.gameObject.GetComponent<PannalData>().data = data;
+        NextPannel.SetActive(true);
+        gameObject.SetActive(false);
 
     }
 
     public void OpenReadLess()
     {
-        ReadMore.gameObject.GetComponent<PannalData>().data = data;
-        // ReadMore.gameObject.GetComponent<AnchoreData>().Title = data.Title;
-        // Title.text = data.Title;
-        Discription.text = data.FullDiscription;
-        ReadMore.SetActive(true);
+
+
+        NextPannel.SetActive(true);
 
     }
 
     public void OpenMe()
     {
-        ReadMore.gameObject.GetComponent<PannalData>().data = data;
+        // ReadMore.gameObject.GetComponent<PannalData>().data = data;
         Title.text = data.Title;
         Discription.text = data.Description;
         gameObject.SetActive(true);

@@ -205,7 +205,7 @@ public class ExploreItemManager : MonoBehaviour
             distance.text = loader.Result.routes[0].distance >= 1000 ?
             ((float)(loader.Result.routes[0].distance / 1000)).ToString() + "-Km" : ((float)(loader.Result.routes[0].distance)).ToString() + "-M";
             duration.text = loader.Result.routes[0].duration >= 216000 ?
-             ((float)(loader.Result.routes[0].duration / 60 / 60)).ToString() + "-Hr" : ((float)(loader.Result.routes[0].duration / 60)).ToString() + "-Mi";
+             ((float)(loader.Result.routes[0].duration / 60)).ToString() + "-Hr" : ((float)(loader.Result.routes[0].duration / 60 / 60)).ToString() + "-Mi";
 
         }
     }
